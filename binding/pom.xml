@@ -6,14 +6,14 @@
     <groupId>org.oclc.circill.toolkit</groupId>
     <artifactId>binding</artifactId>
     <packaging>pom</packaging>
-    <version>0.25-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>Circ/ILL Toolkit: Binding: Parent</name>
     <description>Circ/ILL Toolkit: Binding parent</description>
 
     <parent>
         <groupId>org.oclc.circill.toolkit</groupId>
         <artifactId>root</artifactId>
-        <version>0.25-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modules>

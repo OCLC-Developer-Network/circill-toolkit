@@ -5,7 +5,7 @@
 
     <groupId>org.oclc.circill.toolkit</groupId>
     <artifactId>binding-jar</artifactId>
-    <version>0.25-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Circ/ILL Toolkit: Binding: Common</name>
     <description>Circ/ILL Toolkit: Binding Common</description>
@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.oclc.circill.toolkit</groupId>
         <artifactId>binding</artifactId>
-        <version>0.25-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>

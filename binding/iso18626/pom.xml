@@ -13,7 +13,7 @@
 
 
     <artifactId>binding-iso18626</artifactId>
-    <version>0.25-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Circ/ILL Toolkit: Binding: ISO 18626</name>
     <description>Circ/ILL Toolkit: Binding for ISO ILL 18626</description>
@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.oclc.circill.toolkit</groupId>
         <artifactId>binding</artifactId>
-        <version>0.25-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>

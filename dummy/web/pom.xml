@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dummy-web</artifactId>
-    <version>0.25-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Circ/ILL Toolkit: Dummy: Responder Jar</name>
     <description>Circ/ILL Toolkit: Dummy Responder</description>
@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.oclc.circill.toolkit</groupId>
         <artifactId>dummy-parent</artifactId>
-        <version>0.25-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>

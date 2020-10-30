@@ -63,22 +63,22 @@ mvn clean package
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>binding-iso18626</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>service-base</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>service-iso18626</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>initiator</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -221,37 +221,37 @@ public final class ExampleISO18626Client {
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>binding-iso18626</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>common-ncip</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>dummy-jar</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>dummy-web</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>responder</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>service-base</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>service-iso18626</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <!-- You can use other logging implementations. -->
     <dependency>
@@ -428,27 +428,27 @@ If you've followed the steps in **Getting Started with an ISO 18626 client**, yo
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>binding-ncipv2_02</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>service-base</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>service-ncip</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>service-ncip-common</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.oclc.circill.toolkit</groupId>
             <artifactId>initiator</artifactId>
-            <version>0.25-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
       <dependency>
           <groupId>org.slf4j</groupId>
@@ -585,42 +585,42 @@ public final class ExampleNCIPClient {
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>binding-ncipv2_02</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>common-ncip</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>dummy-jar</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>dummy-web</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>service-base</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>service-ncip</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>service-ncip-common</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.oclc.circill.toolkit</groupId>
       <artifactId>responder</artifactId>
-      <version>0.25-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

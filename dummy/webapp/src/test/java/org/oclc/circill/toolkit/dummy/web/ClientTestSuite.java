@@ -56,7 +56,7 @@ public class ClientTestSuite {
             container.setHome(installer.getHome());
 
             // TODO: Need to be able to automatically select the current war.
-            final WAR myWar = new WAR("./target/dummy-webapp-0.25-SNAPSHOT.war");
+            final WAR myWar = new WAR("./target/dummy-webapp-1.0.0-SNAPSHOT.war");
             myWar.setContext("/dummy");
             configuration.addDeployable(myWar);
 
