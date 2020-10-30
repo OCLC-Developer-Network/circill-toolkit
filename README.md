@@ -1,4 +1,9 @@
 # Circ/ILL Toolkit
+<p align="center">
+  <a href="./LICENSE.md">
+    <img src="https://img.shields.io/github/license/OCLC-Developer-Network/circill-toolkit" alt="The Circ/ILL Toolkit is released under the MIT license." />
+  </a>
+</p>
 
 The Circ/ILL Toolkit is a library for for marshalling, unmarshalling and exchanging messages conforming to ISO ILL (ISO 18626) or NCIP (NISO Z39.83).
 
