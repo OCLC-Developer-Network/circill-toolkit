@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+    <display-name>Circ-ILL Toolkit Responder</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:circill-toolkit-web.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- NCIP Lookup Version -->
+    <servlet>
+        <servlet-name>version</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:empty.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>version</servlet-name>
+        <url-pattern>/ncip/version/responder/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VersionStatisticsReportServlet</servlet-name>
+        <servlet-class>org.oclc.circill.toolkit.responder.implprof1.StatisticsReportServlet</servlet-class>
+        <init-param>
+            <param-name>beanName</param-name>
+            <param-value>ncipStatisticsBean</param-value>
+        </init-param>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>VersionStatisticsReportServlet</servlet-name>
+        <url-pattern>/ncip/version/statistics/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- NCIP -->
+    <servlet>
+        <servlet-name>ncip</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:empty.xml</param-value>
+        </init-param>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ncip</servlet-name>
+        <url-pattern>/ncip/responder/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NCIPStatisticsReportServlet</servlet-name>
+        <servlet-class>org.oclc.circill.toolkit.responder.implprof1.StatisticsReportServlet</servlet-class>
+        <init-param>
+            <param-name>beanName</param-name>
+            <param-value>ncipStatisticsBean</param-value>
+        </init-param>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>NCIPStatisticsReportServlet</servlet-name>
+        <url-pattern>/ncip/responder/statistics/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Responder Configuration -->
+    <servlet>
+        <servlet-name>config</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:empty.xml</param-value>
+        </init-param>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>config</servlet-name>
+        <url-pattern>/config/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- ISO 18626 -->
+    <servlet>
+        <servlet-name>iso18626</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:empty.xml</param-value>
+        </init-param>
+        <load-on-startup>3</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>iso18626</servlet-name>
+        <url-pattern>/iso18626/responder/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ISO18626StatisticsReportServlet</servlet-name>
+        <servlet-class>org.oclc.circill.toolkit.responder.implprof1.StatisticsReportServlet</servlet-class>
+        <init-param>
+            <param-name>beanName</param-name>
+            <param-value>iso18626StatisticsBean</param-value>
+        </init-param>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ISO18626StatisticsReportServlet</servlet-name>
+        <url-pattern>/iso18626/responder/statistics/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Index page -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

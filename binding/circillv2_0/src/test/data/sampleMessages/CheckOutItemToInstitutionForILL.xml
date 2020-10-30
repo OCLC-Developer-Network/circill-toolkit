@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd">
+    <!--
+    This checks out the Item that has a Barcode of "ABCDE", that belongs to Institution "OCWMS", to Institution "NDOSU"
+    for the ILL Request with ID "12345", also for Institution "OCWMS"
+    Note that this is mandated because the ILL System is effectively saying that the Item has already been shipped, and
+    as such the Circulation system absolutely must honour the request, including the provided due date.
+     -->
+    <ns1:CheckOutItem>
+        <ns1:InitiationHeader>
+            <ns1:FromSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WSILL</ns1:FromSystemId>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WMS Circ</ns1:ToSystemId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:ToAgencyId>
+            <ns1:ApplicationProfileType ns1:Scheme="http://oclc.org/ncip/schemes/applicationprofiletype/circillapplicationprofiletype.scm">2.00</ns1:ApplicationProfileType>
+        </ns1:InitiationHeader>
+        <ns1:MandatedAction>
+            <ns1:DateEventOccurred>2018-01-12T11:37:00Z</ns1:DateEventOccurred>
+        </ns1:MandatedAction>
+        <ns1:UserId>
+            <ns1:UserIdentifierType ns1:Scheme="http://oclc.org/ncip/schemes/userid/oclcids.scm">OCLC Institution Symbol</ns1:UserIdentifierType>
+            <ns1:UserIdentifierValue>NDOSU</ns1:UserIdentifierValue>
+        </ns1:UserId>
+        <ns1:ItemId>
+            <ns1:ItemIdentifierType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/visibleitemidentifiertype/visibleitemidentifiertype.scm">Barcode</ns1:ItemIdentifierType>
+            <ns1:ItemIdentifierValue>ABCDE</ns1:ItemIdentifierValue>
+        </ns1:ItemId>
+        <ns1:RequestId>
+            <ns1:RequestIdentifierType ns1:Scheme="http://oclc.org/ncip/schemes/requestidentifiertype/circillrequestidentifiertype.scm">ILL Request Id</ns1:RequestIdentifierType>
+            <ns1:RequestIdentifierValue>12345</ns1:RequestIdentifierValue>
+        </ns1:RequestId>
+        <ns1:DesiredDateDue>2018-02-01T12:34:56Z</ns1:DesiredDateDue>
+    </ns1:CheckOutItem>
+</ns1:NCIPMessage>

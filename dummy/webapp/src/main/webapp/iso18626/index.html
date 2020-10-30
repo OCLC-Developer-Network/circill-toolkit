@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en">
+<!--
+ Copyright (c) 2020 OCLC, Inc.
+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the MIT/X11 license. The text of the license can be
+ found at http://www.opensource.org/licenses/mit-license.php.
+-->
+<head>
+
+    <title>Circ/ILL Toolkit ISO18626 Test Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="../js/jquery-1.8.0.min.js"></script>
+    <script src="../js/xslt.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #fefefe;
+        }
+
+        #main {
+            width: 95%;
+            margin: 0 auto;
+            border: 1px solid #999;
+            border-radius: 3px;
+        }
+
+        #header {
+            width: 100%;
+            margin: 1em auto;
+            padding: .5em;
+            clear: both;
+        }
+
+        #header h1 {
+            float: left;
+            margin-top: 0;
+            padding-left: 1em;
+        }
+
+        #header img {
+            float: left;
+        }
+
+        #content {
+            float: left;
+            margin-top: .5em;
+            width: 75%;
+        }
+
+        #content textarea {
+            width: 85%;
+        }
+
+        #samples {
+            float: right;
+            width: 23%;
+            padding: .2em;
+            margin-top: 1em;
+            background-color: #efefef;
+            border: 2px solid #600;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+    </style>
+    <script>
+
+        $(document).ready(
+            function () {
+                var transformer;
+                if (!window.ActiveXObject) {
+                    var xhr = $.get("../stylesheet.xsl", {}, function (data, responseText, jqXHR) {
+                        transformer = new XSLTransformer(data);
+                    }, "xml");
+                } else {
+                    transformer = new XSLTransformer("../stylesheet.xsl");
+                }
+                var formBox = $("#iso18626Doc");
+                $("#samples button").each(
+                    function () {
+                        var button = $(this);
+                        var tgt = button.data('target');
+                        if (tgt !== undefined) {
+                            button.click(
+                                function () {
+                                    $.get(tgt,
+                                        {},
+                                        function (data) {
+                                            formBox.val(data);
+                                        },
+                                        'text'
+                                    );
+                                }
+                            );
+                        }
+                    }
+                );
+
+                $("#messageInput").on("submit",
+                    function (evt) {
+                        var $form = $(this);
+                        evt.preventDefault();
+                        var $input = $("#iso18626Doc");
+                        var $msg = $input.val();
+                        var $tgt = $("#msgLine");
+
+                        var successCallback = function (data, textStatus, jqXHR) {
+                            var out = transformer.transform(data);
+                            if (out) {
+                                if ($tgt.get(0).nodeName.toLowerCase() == 'textarea') {
+                                    $tgt.val(out);
+                                } else {
+                                    $tgt.text(out);
+                                }
+                            }
+                        };
+
+                        $tgt.val("Sending request to responder ...");
+                        jQuery.post($form.attr('action'),
+                            $input.val(),
+                            successCallback,
+                            "xml")
+                        .fail(function(response) {
+                            alert("Service call failed. HTTP Status " + response.status + "; " + response.statusText)
+                        });
+
+                        return false;
+                    });
+            });
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<div id="main">
+    <div id="header">
+
+        <img src="../logo.jpg" alt="Circ/ILL Toolkit Logo"/>
+        <h1>Circ/ILL Toolkit ISO18626 Test Page</h1>
+        <div class="clearfix">
+            <p>To test, enter your ISO 18626 message in the first text area below and click the 'Submit' button.
+                Your message will be sent to the ISO 18626 Service and the response message will be displayed in the second text area below.
+            </p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="content">
+        <form id="messageInput" name="ajax" method="POST" action="./responder">
+
+            <p>
+                <input type="submit" value="Submit"/>
+            </p>
+            <p>
+                <textarea rows="10" cols="120" name="iso18626Doc" id="iso18626Doc" placeholder="Enter ISO 18626 message here."></textarea>
+            </p>
+            <textarea rows="20" cols="120" name="msgLine" enabled="false" id="msgLine" placeholder="Status:"></textarea>
+        </form>
+    </div>
+
+    <div id="samples">
+        <h1>Sample Documents</h1>
+        <button id="request" data-target="Request.xml">Request</button>
+    </div>
+
+</div>
+
+</body>
+</html>

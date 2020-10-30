@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:ISO18626Message
+        xmlns:ns1="http://illtransactions.org/2013/iso18626" ns1:version="v1_2_2017">
+    <ns1:requestingAgencyMessage>
+        <ns1:header>
+            <ns1:supplyingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>US-ocolcwe</ns1:agencyIdValue>
+            </ns1:supplyingAgencyId>
+            <ns1:requestingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>US-ocolcm</ns1:agencyIdValue>
+            </ns1:requestingAgencyId>
+            <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
+            <ns1:timestamp>2018-02-08T08:34:54Z</ns1:timestamp>
+            <ns1:requestingAgencyRequestId>request-id-001</ns1:requestingAgencyRequestId>
+            <ns1:supplyingAgencyRequestId>supply-id-001</ns1:supplyingAgencyRequestId>
+            <ns1:requestingAgencyAuthentication>
+                <ns1:accountId>Account-001</ns1:accountId>
+                <ns1:securityCode>ABC-Easy-As</ns1:securityCode>
+            </ns1:requestingAgencyAuthentication>
+        </ns1:header>
+        <ns1:action>Notification</ns1:action>
+        <ns1:note>Your message with timestamp 2018-02-08T08:30:17Z had a requestingAgencyRequestId of 1692387234 which is not valid for supplyingAgencyId US-ocolcwe.</ns1:note>
+    </ns1:requestingAgencyMessage>
+</ns1:ISO18626Message>

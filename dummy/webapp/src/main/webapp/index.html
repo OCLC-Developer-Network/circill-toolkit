@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en">
+<!--
+ Copyright (c) 2020 OCLC, Inc.
+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the MIT/X11 license. The text of the license can be
+ found at http://www.opensource.org/licenses/mit-license.php.
+-->
+<head>
+
+    <title>Circ/ILL Toolkit Test Menu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="js/jquery-1.8.0.min.js"></script>
+    <script src="js/xslt.js"></script>
+    <style type="text/css">
+        body {
+            background-color: #fefefe;
+        }
+
+        #main {
+            width: 95%;
+            margin: 0 auto;
+            border: 1px solid #999;
+            border-radius: 3px;
+        }
+
+        #header {
+            width: 100%;
+            margin: 1em auto;
+            padding: .5em;
+            clear: both;
+        }
+
+        #header h1 {
+            float: left;
+            margin-top: 0;
+            padding-left: 1em;
+        }
+
+        #header img {
+            float: left;
+        }
+
+        #content {
+            float: left;
+            margin-top: .5em;
+            width: 75%;
+        }
+
+        #content textarea {
+            width: 85%;
+        }
+
+        #samples {
+            float: right;
+            width: 23%;
+            padding: .2em;
+            margin-top: 1em;
+            background-color: #efefef;
+            border: 2px solid #600;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<div id="main">
+    <div id="header">
+
+        <img src="logo.jpg" alt="Circ/ILL Toolkit Logo"/>
+        <h1>Circ/ILL Toolkit Menu</h1>
+        <div class="clearfix">
+            <table>
+                <caption>Actions</caption>
+                <tr><th scope="col">Action</th><th scope="col">Link</th></tr>
+                <tr><td>Test NCIP responder</td><td><a href="ncip/index.html">NCIP Test Page</a></td><td><a href="ncip/responder/statistics">Statistics</a></td></tr>
+                <tr><td>Test ISO 18626 responder</td><td><a href="iso18626/index.html">ISO 18626 Test Page</a></td>
+                    <td><a href="iso18626/responder/statistics">Statistics</a></td></tr>
+                <tr><td>Configuration</td><td><a href="config/">Configuration</a></td></tr>
+                <tr><td>Message history</td><td><a href="config/display/">Message history</a></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

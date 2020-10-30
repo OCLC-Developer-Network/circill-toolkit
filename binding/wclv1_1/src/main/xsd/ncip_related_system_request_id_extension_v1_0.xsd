@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ........................................... -->
+<!-- NISO Circulation Interchange Protocol ..... -->
+<!--       RelatedSystemRequestIdExtension       -->
+<!-- ........................................... -->
+<!--
+Purpose:
+  This file defines the XML Schema for a RelatedSystemRequestId for use as part of the NISO Circulation Interchange Protocol.
+  A RelatedSystemRequestId can be part of the information for a request that derives from a "related" system.
+  An example use case: A user creates a hold request in their local circulation system, the circulation system determines
+  that it can't fill the hold (e.g. because its copy is on loan) and transmits the request to the library's ILL system
+  for fulfilment. At this point two systems are involved in what the user thinks of as a single request, and will expect
+  the display in their "My Library Account" to show them one request. If the user interface fetches request data from
+   both the circulation and the ILL systems, this extension can be used to match the two instances of request data
+   and present a combined view of the request to the user.
+
+Dependencies:
+  NCIP v2.02 schema.
+
+Change history:
+  Version 1.0 (13 September 2018)
+  1)	Initial version.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.oclc.org/ncip/relatedsystemrequestid/2018"
+           xmlns:ncip="http://www.niso.org/2008/ncip"
+           targetNamespace="http://www.oclc.org/ncip/relatedsystemrequestid/2018"
+           elementFormDefault="qualified" attributeFormDefault="qualified">
+
+    <xs:import namespace="http://www.niso.org/2008/ncip" schemaLocation="ncip_v2_02.xsd"/>
+
+    <xs:element name="RelatedSystemRequestId">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ncip:FromSystemId" minOccurs="0"/>
+                <xs:element ref="ncip:RequestId"/>
+                <xs:element ref="ncip:Ext" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:ISO18626Message
+        xmlns:ns1="http://illtransactions.org/2013/iso18626" ns1:version="v1_2_2017">
+    <ns1:request>
+        <ns1:header>
+            <ns1:supplyingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>oclc-NDOSU</ns1:agencyIdValue>
+            </ns1:supplyingAgencyId>
+            <ns1:requestingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>oclc-ISODP</ns1:agencyIdValue>
+            </ns1:requestingAgencyId>
+            <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
+            <ns1:timestamp>2020-10-14T15:29:30.403Z</ns1:timestamp>
+            <ns1:requestingAgencyRequestId>tester-20201014.1529</ns1:requestingAgencyRequestId>
+        </ns1:header>
+        <ns1:bibliographicInfo>
+            <ns1:title>Testing Toolkit and ISO changes 2nd (ill-tester-ui: Wed Oct 14 2020 10:32:30 GMT-0500 (Central Daylight Time))</ns1:title>
+            <ns1:author>Bodfish</ns1:author>
+            <ns1:informationSource>OCLC</ns1:informationSource>
+        </ns1:bibliographicInfo>
+        <ns1:publicationInfo>
+            <ns1:publisher>Publisher</ns1:publisher>
+            <ns1:publicationType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/PublicationTypeList-V1.0">Book</ns1:publicationType>
+            <ns1:publicationDate>2010-03-02</ns1:publicationDate>
+            <ns1:placeOfPublication>New York</ns1:placeOfPublication>
+        </ns1:publicationInfo>
+        <ns1:serviceInfo>
+            <ns1:requestType>New</ns1:requestType>
+            <ns1:serviceType>Loan</ns1:serviceType>
+            <ns1:serviceLevel ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/ServiceLevelList-V1.0">Normal</ns1:serviceLevel>
+            <ns1:needBeforeDate>2020-11-14T16:29:30.403Z</ns1:needBeforeDate>
+        </ns1:serviceInfo>
+        <ns1:requestedDeliveryInfo>
+            <ns1:address>
+                <ns1:physicalAddress>
+                    <ns1:postalCode>43017</ns1:postalCode>
+                    <ns1:region>OH</ns1:region>
+                    <ns1:country>US</ns1:country>
+                </ns1:physicalAddress>
+            </ns1:address>
+        </ns1:requestedDeliveryInfo>
+        <ns1:patronInfo>
+            <ns1:patronId>1234</ns1:patronId>
+        </ns1:patronInfo>
+        <ns1:billingInfo>
+            <ns1:address>
+                <ns1:physicalAddress>
+                    <ns1:line1>6565 Kilgour Place</ns1:line1>
+                    <ns1:postalCode>43017</ns1:postalCode>
+                    <ns1:region>OH</ns1:region>
+                    <ns1:country>US</ns1:country>
+                </ns1:physicalAddress>
+            </ns1:address>
+        </ns1:billingInfo>
+    </ns1:request>
+</ns1:ISO18626Message>

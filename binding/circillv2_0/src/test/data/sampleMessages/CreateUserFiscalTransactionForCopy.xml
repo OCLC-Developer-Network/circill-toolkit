@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd">
+    <!--
+    This requests to create a bill for USD 12.34 against the Patron with Barcode "ZYXWV" belonging to Instiuttion "OCWMS".
+    This bill is for the ILL Request with ID "12345" loaning the non-returnable item with Barcode "ABCDE"
+     -->
+    <ns1:CreateUserFiscalTransaction>
+        <ns1:InitiationHeader>
+            <ns1:FromSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WSILL</ns1:FromSystemId>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WMS Circ</ns1:ToSystemId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:ToAgencyId>
+            <ns1:ApplicationProfileType ns1:Scheme="http://oclc.org/ncip/schemes/applicationprofiletype/circillapplicationprofiletype.scm">2.00</ns1:ApplicationProfileType>
+        </ns1:InitiationHeader>
+        <ns1:UserId>
+            <ns1:UserIdentifierType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/visibleuseridentifiertype/visibleuseridentifiertype.scm">Barcode</ns1:UserIdentifierType>
+            <ns1:UserIdentifierValue>ZYXWV</ns1:UserIdentifierValue>
+        </ns1:UserId>
+        <ns1:FiscalTransactionInformation>
+            <ns1:FiscalActionType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/fiscalactiontype/fiscalactiontype.scm">Assess</ns1:FiscalActionType>
+            <ns1:FiscalTransactionType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/fiscaltransactiontype/fiscaltransactiontype.scm">Interlibrary Loan Fee</ns1:FiscalTransactionType>
+            <ns1:Amount>
+                <ns1:CurrencyCode ns1:Scheme="http://www.bsi-global.com/Technical+Information/Publications/_Publications/tig90x.doc">USD</ns1:CurrencyCode>
+                <ns1:MonetaryValue>1234</ns1:MonetaryValue>
+            </ns1:Amount>
+            <ns1:RequestId>
+                <ns1:RequestIdentifierType ns1:Scheme="http://oclc.org/ncip/schemes/requestidentifiertype/circillrequestidentifiertype.scm">ILL Request Id</ns1:RequestIdentifierType>
+                <ns1:RequestIdentifierValue>12345</ns1:RequestIdentifierValue>
+            </ns1:RequestId>
+            <ns1:ItemDetails>
+                <ns1:ItemId>
+                    <ns1:ItemIdentifierType ns1:Scheme="http://oclc.org/ncip/schemes/requestidentifiertype/circillrequestidentifiertype.scm">ILL Request Id</ns1:ItemIdentifierType>
+                    <ns1:ItemIdentifierValue>12345</ns1:ItemIdentifierValue>
+                </ns1:ItemId>
+                <!-- Note, Bibliographic Description is itself required, but nothing inside of it is -->
+                <ns1:BibliographicDescription></ns1:BibliographicDescription>
+                <ns1:NonReturnableFlag/>
+            </ns1:ItemDetails>
+        </ns1:FiscalTransactionInformation>
+    </ns1:CreateUserFiscalTransaction>
+</ns1:NCIPMessage>

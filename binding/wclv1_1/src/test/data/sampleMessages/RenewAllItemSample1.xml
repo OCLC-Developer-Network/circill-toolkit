@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage
+        xmlns:ns1="http://www.niso.org/2008/ncip"
+        xmlns:ns2="http://www.oclc.org/ncip/renewall/2014" ns1:version="http://www.niso.org/schemas/ncip/v2_02/imp1/xsd/ncip_v2_02.xsd">
+    <ns1:Ext>
+        <ns2:RenewAllItem>
+            <ns1:UserId>
+                <ns1:UserIdentifierValue>209384091823091823091823</ns1:UserIdentifierValue>
+            </ns1:UserId>
+        </ns2:RenewAllItem>
+    </ns1:Ext>
+</ns1:NCIPMessage>

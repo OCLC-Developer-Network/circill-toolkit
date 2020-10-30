@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>binding-circillv2_0</artifactId>
+    <packaging>jar</packaging>
+    <name>Circ/ILL Toolkit: Binding: Circ/ILL v2_0 Binding v1.1</name>
+    <description>Circ/ILL Toolkit: Binding for Circ/ILL Application Profile version 2.0</description>
+
+    <parent>
+        <groupId>org.oclc.circill.toolkit</groupId>
+        <artifactId>binding</artifactId>
+        <version>0.25-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <jacoco.coverage.minimum>0.70</jacoco.coverage.minimum>
+    </properties>
+
+    <dependencies>
+
+        <!-- >>>>> These dependencies are sorted by artifactId <<<<< -->
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-jar</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-ncipv2_02</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-wclv1_0</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-wclv1_1</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-ncip</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ncip</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ncip-common</artifactId>
+        </dependency>
+
+        <!-- >>>>> These dependencies are sorted by groupId / artifactId <<<<< -->
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.castor</groupId>
+            <artifactId>castor-xml-diff</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/xsd</directory>
+                <includes>
+                    <include>**/*.xsd</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>true</failOnWarning>
+                            <usedDependencies>
+                                <ignoredUnusedDeclaredDependencies>javax.servlet:servlet-api</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.codehaus.castor:castor-xml-diff</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.hamcrest:hamcrest-library</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-ncipv2_02</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-wclv1_0</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-wclv1_1</ignoredUnusedDeclaredDependencies>
+                            </usedDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,174 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!--
+        * Copyright (c) 2020 OCLC, Inc.
+        *
+        * This program is free software; you can redistribute it and/or modify it
+        * under the terms of the MIT/X11 license. The text of the license can be
+        * found at http://www.opensource.org/licenses/mit-license.php.
+        *
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Note: This configuration is intended for use by client applications that send NCIP messages. -->
+
+    <bean id="ncipStatisticsBean" class="org.oclc.circill.toolkit.common.base.StatisticsBean"/>
+
+    <bean id="ncipProtocolHelper" class="org.oclc.circill.toolkit.common.ncip.NCIPProtocolHelper"/>
+
+    <bean id="ncipContentMappingFactory" class="org.oclc.circill.toolkit.binding.ncipv2_02.jaxb.dozer.NCIPv2_02ContentMappingFactory">
+        <property name="protocolHelper" ref="ncipProtocolHelper"/>
+    </bean>
+
+    <bean id="ncipMapper" class="org.dozer.DozerBeanMapper">
+        <property name="mappingFiles" value="ncipv2_02_mappings.xml"/>
+        <property name="customConverters">
+            <list>
+                <ref bean="ncipContentMappingFactory"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="ncipMarshallerFactory" class="org.oclc.circill.toolkit.binding.jaxb.JAXBMarshallerFactory">
+        <constructor-arg name="schemaURLsToPackageMap">
+            <map>
+                <entry key="ncip_v2_02.xsd" value="org.oclc.circill.toolkit.binding.ncipv2_02.jaxb.elements"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="ncipTranslator" class="org.oclc.circill.toolkit.binding.ncipv2_02.jaxb.dozer.NCIPv2_02JAXBDozerTranslator">
+        <property name="logMessages" value="true"/>
+        <property name="mapper" ref="ncipMapper"/>
+        <property name="marshallerFactory" ref="ncipMarshallerFactory"/>
+        <property name="messagesLoggingLevel" value="DEBUG"/>
+        <property name="prettyPrintXML" value="true"/>
+        <property name="protocolHelper" ref="ncipProtocolHelper"/>
+        <property name="statisticsBean" ref="ncipStatisticsBean"/>
+    </bean>
+
+    <bean id="ncipClient" class="org.oclc.circill.toolkit.initiator.client.HttpClientImpl">
+        <constructor-arg name="statisticsBean" ref="ncipStatisticsBean"/>
+    </bean>
+
+    <bean id="ncipInitiatorService" class="org.oclc.circill.toolkit.initiator.servicemanager.HttpInitiatorServiceImpl">
+        <constructor-arg name="translator" ref="ncipTranslator"/>
+    </bean>
+
+    <bean id="ncipServiceContext" scope="prototype" class="org.oclc.circill.toolkit.common.ncip.NCIPServiceContext">
+        <property name="version" value="http://www.niso.org/schemas/ncip/v2_02/imp1/xsd/ncip_v2_02.xsd"/>
+        <property name="requireApplicationProfileType" value="false"/>
+        <!-- applicationProfileTypes null -->
+        <property name="namespaceURIs" value="http://www.niso.org/2008/ncip"/>
+        <property name="defaultNamespace" value="http://www.niso.org/2008/ncip"/>
+        <property name="addDefaultNamespace" value="false"/>
+        <property name="schemaURLs" value="ncip_v2_02.xsd"/>
+        <property name="validateMessagesAgainstSchema" value="true"/>
+        <!-- Does not work as of Nov 20 2019.
+        <property name="parserFeatures">
+            <map>
+                <entry key="http://javax.xml.XMLConstants/feature/secure-processing" value="false"/>
+            </map>
+        </property>
+        -->
+    </bean>
+
+    <bean id="ncipServiceContextFactory" class="org.oclc.circill.toolkit.common.ncip.NCIPServiceContextFactory">
+        <constructor-arg name="serviceContextBeanName" value="ncipServiceContext"/>
+    </bean>
+
+    <bean id="loadSchemeValueClasses" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod">
+            <value>org.oclc.circill.toolkit.service.base.SchemeValuePair.loadSchemeValueClasses</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AcceptItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AcceptItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1GeneralProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LocationType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemUseRestrictionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1BibliographicItemIdentifierCode</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1BibliographicLevel</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ComponentIdentifierType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1Language</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ElectronicDataFormatType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1MediumType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CirculationStatus</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemDescriptionLevel</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1PhysicalConditionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1SecurityMarker</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestScopeType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestStatusType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1PhysicalAddressType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UnstructuredAddressType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CurrencyCode</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ElectronicAddressType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UserAddressRoleType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1BibliographicRecordIdentifierCode</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AuthenticationDataFormatType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AuthenticationInputType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestedActionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemIdentifierType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AgencyAddressRoleType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AgencyElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1BibliographicItemIdentifierCode</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CancelRequestItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CheckInItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CheckOutItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1FiscalActionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1FiscalTransactionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1GeneralProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LookupItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LookupRequestProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LookupUserProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1MessagingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1OrganizationNameType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1PaymentMethodType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RenewItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UpdateRequestItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UserElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UserIdentifierType</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="allowAnyValue" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod">
+            <value>org.oclc.circill.toolkit.service.base.SchemeValuePair.allowAnyValue</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>org.oclc.circill.toolkit.service.ncip.AuthenticationDataFormatType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.AuthenticationInputType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.common.AgencyId</value>
+                <value>org.oclc.circill.toolkit.service.ncip.common.ApplicationProfileType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.common.FromSystemId</value>
+                <value>org.oclc.circill.toolkit.service.ncip.common.ToSystemId</value>
+                <value>org.oclc.circill.toolkit.service.ncip.PickupLocation</value>
+                <value>org.oclc.circill.toolkit.service.ncip.RequestIdentifierType</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="allowNullScheme" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod">
+            <value>org.oclc.circill.toolkit.service.base.SchemeValuePair.allowNullScheme</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>org.oclc.circill.toolkit.service.ncip.AgencyElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.ItemElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.RequestElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.UserElementType</value>
+            </list>
+        </property>
+    </bean>
+</beans>

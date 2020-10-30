@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.oclc.circill.toolkit</groupId>
+    <artifactId>service-ncipversion</artifactId>
+    <version>0.25-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Circ/ILL Toolkit: Services: NCIP LookupVersion</name>
+
+    <parent>
+        <groupId>org.oclc.circill.toolkit</groupId>
+        <artifactId>service</artifactId>
+        <version>0.25-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <jacoco.coverage.minimum>0.47</jacoco.coverage.minimum>
+    </properties>
+
+    <dependencies>
+
+        <!-- >>>>> These dependencies are sorted by artifactId <<<<< -->
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-base</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ncip-common</artifactId>
+        </dependency>
+
+        <!-- >>>>> These dependencies are sorted by groupId / artifactId <<<<< -->
+
+        <dependency>
+            <groupId>com.google.code.bean-matchers</groupId>
+            <artifactId>bean-matchers</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>true</failOnWarning>
+                            <usedDependencies>
+                                <ignoredUnusedDeclaredDependencies>log4j:log4j</ignoredUnusedDeclaredDependencies>
+                            </usedDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

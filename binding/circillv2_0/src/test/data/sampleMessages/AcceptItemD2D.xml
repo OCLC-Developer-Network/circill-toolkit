@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd">
+    <!--
+    This indicates that Institution "OCWMS" has just received the item with Barcode "ABCDE", owned by Institution "NDOSU"
+    for Patron with Barcode "ZYXWV" for ILL Request "12345".
+     -->
+    <ns1:AcceptItem>
+        <ns1:InitiationHeader>
+            <ns1:FromSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">Relais D2D</ns1:FromSystemId>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WMS Circ</ns1:ToSystemId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:ToAgencyId>
+            <ns1:ApplicationProfileType ns1:Scheme="http://oclc.org/ncip/schemes/applicationprofiletype/circillapplicationprofiletype.scm">2.00</ns1:ApplicationProfileType>
+        </ns1:InitiationHeader>
+        <ns1:RequestId>
+            <ns1:RequestIdentifierType ns1:Scheme="http://oclc.org/ncip/schemes/requestidentifiertype/circillrequestidentifiertype.scm">ILL Request Id</ns1:RequestIdentifierType>
+            <ns1:RequestIdentifierValue>12345</ns1:RequestIdentifierValue>
+        </ns1:RequestId>
+        <ns1:RequestedActionType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/requestedactiontype/requestedactiontype.scm">Circulate</ns1:RequestedActionType>
+        <ns1:UserId>
+            <ns1:UserIdentifierType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/visibleuseridentifiertype/visibleuseridentifiertype.scm">Barcode</ns1:UserIdentifierType>
+            <ns1:UserIdentifierValue>ZYXWV</ns1:UserIdentifierValue>
+        </ns1:UserId>
+        <ns1:ItemId>
+            <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">NDOSU</ns1:AgencyId>
+            <ns1:ItemIdentifierType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/visibleitemidentifiertype/visibleitemidentifiertype.scm">Barcode</ns1:ItemIdentifierType>
+            <ns1:ItemIdentifierValue>ABCDE</ns1:ItemIdentifierValue>
+        </ns1:ItemId>
+        <ns1:DateForReturn>2018-02-01T00:00:00Z</ns1:DateForReturn>
+        <ns1:ItemOptionalFields>
+            <ns1:BibliographicDescription>
+                <ns1:Author>J. R. R. Tolkien</ns1:Author>
+                <ns1:Edition>1997</ns1:Edition>
+                <ns1:PublicationDate>1997</ns1:PublicationDate>
+                <ns1:Publisher>Harper Collins</ns1:Publisher>
+                <ns1:Title>The Hobbit</ns1:Title>
+                <ns1:BibliographicLevel ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/bibliographiclevel/bibliographiclevel.scm">Monograph</ns1:BibliographicLevel>
+                <ns1:MediumType ns1:Scheme="http://worldcat.org/ncip/schemes/v2/extensions/mediumtype.scm">Book</ns1:MediumType>
+            </ns1:BibliographicDescription>
+            <ns1:ItemDescription>
+                <ns1:CallNumber>PR6039.O32 H633 1997</ns1:CallNumber>
+            </ns1:ItemDescription>
+        </ns1:ItemOptionalFields>
+        <ns1:PickupExpiryDate>2018-02-01T00:00:00Z</ns1:PickupExpiryDate>
+    </ns1:AcceptItem>
+</ns1:NCIPMessage>

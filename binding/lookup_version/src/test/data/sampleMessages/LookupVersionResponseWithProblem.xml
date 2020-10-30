@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NCIPVersionMessage version="http://www.niso.org/ncip/v1_0/imp1/xsd/ncip_version.xsd">
+    <LookupVersionResponse>
+        <FromAgencyId>
+            <UniqueAgencyId>
+                <Scheme>Unknown</Scheme>
+                <Value>Unknown</Value>
+            </UniqueAgencyId>
+        </FromAgencyId>
+        <ToAgencyId>
+            <UniqueAgencyId>
+                <Scheme>Unknown</Scheme>
+                <Value>Unknown</Value>
+            </UniqueAgencyId>
+        </ToAgencyId>
+        <VersionSupported>This is the problem - no data</VersionSupported>
+    </LookupVersionResponse>
+</NCIPVersionMessage>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ........................................... -->
+<!-- NISO Circulation Interchange Protocol ..... -->
+<!--           User Note Extension              -->
+<!-- ........................................... -->
+<!--
+Purpose:
+  This file defines the XML Schema for a RenewAll service for use as part of the NISO Circulation Interchange Protocol.
+
+Dependencies:
+  NCIP v2 schema.
+
+Change history:
+  Version 1.0 (25 August 2014)
+  1)	Initial version.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ncip="http://www.niso.org/2008/ncip"
+           xmlns="http://www.oclc.org/ncip/renewall/2014"
+           targetNamespace="http://www.oclc.org/ncip/renewall/2014"
+           elementFormDefault="qualified" attributeFormDefault="qualified">
+
+    <xs:import namespace="http://www.niso.org/2008/ncip" schemaLocation="ncip_v2_02.xsd"/>
+
+    <xs:element name="RenewAllItem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ncip:InitiationHeader" minOccurs="0"/>
+                <xs:element ref="ncip:MandatedAction" minOccurs="0"/>
+                <xs:choice>
+                    <xs:element ref="ncip:UserId"/>
+                    <xs:element ref="ncip:AuthenticationInput" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:element ref="ncip:UserElementType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="ncip:DesiredDateDue" minOccurs="0"/>
+                <xs:element ref="ncip:DesiredDateForReturn" minOccurs="0"/>
+                <xs:element ref="ncip:AcknowledgedFeeAmount" minOccurs="0"/>
+                <xs:element ref="ncip:PaidFeeAmount" minOccurs="0"/>
+                <xs:element ref="ncip:Ext" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RenewAllItemResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ncip:ResponseHeader" minOccurs="0"/>
+                <xs:choice>
+                    <xs:element ref="ncip:Problem" maxOccurs="unbounded"/>
+                    <xs:sequence>
+                        <xs:element ref="ncip:UserId" minOccurs="0"/>
+                        <xs:element ref="ncip:UserOptionalFields" minOccurs="0"/>
+                        <xs:element ref="RenewInformation" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:element ref="ncip:Ext" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RenewInformation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ncip:ItemId"/>
+                <xs:choice>
+                    <xs:sequence>
+                        <xs:element ref="ncip:Problem" maxOccurs="unbounded"/>
+                        <xs:element ref="ncip:RequiredFeeAmount" minOccurs="0"/>
+                        <xs:element ref="ncip:RequiredItemUseRestrictionType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:element ref="ncip:Pending"/>
+                    <xs:sequence>
+                        <xs:element ref="ncip:DateDue" minOccurs="0"/>
+                        <xs:element ref="ncip:DateForReturn" minOccurs="0"/>
+                        <xs:element ref="ncip:RenewalCount" minOccurs="0"/>
+                        <xs:element ref="ncip:FiscalTransactionInformation" minOccurs="0"/>
+                        <xs:element ref="ncip:ItemOptionalFields" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>

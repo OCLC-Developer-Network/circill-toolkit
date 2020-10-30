@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage
+        xmlns:ns1="http://www.niso.org/2008/ncip"
+        xmlns:ns3="http://www.oclc.org/ncip/usernote/2012"
+        ns1:version="http://www.niso.org/schemas/ncip/v2_02/imp1/xsd/ncip_v2_02.xsd">
+    <ns1:RequestItem>
+        <ns1:InitiationHeader>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="localhost/ncip/v1/schemes/agencies/1">ENG</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="localhost/ncip/v1/schemes/agencies/1">MIT</ns1:AgencyId>
+            </ns1:ToAgencyId>
+        </ns1:InitiationHeader>
+        <ns1:UserId>
+            <ns1:AgencyId ns1:Scheme="localhost/ncip/v1/schemes/agencies/1">MIT</ns1:AgencyId>
+            <ns1:UserIdentifierValue>23008000043915</ns1:UserIdentifierValue>
+        </ns1:UserId>
+        <ns1:BibliographicId>
+            <ns1:BibliographicRecordId>
+                <ns1:BibliographicRecordIdentifier>2052516</ns1:BibliographicRecordIdentifier>
+                <ns1:BibliographicRecordIdentifierCode
+                        ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/bibliographicrecordidentifiercode/bibliographicrecordidentifiercode.scm">OCLC</ns1:BibliographicRecordIdentifierCode>
+            </ns1:BibliographicRecordId>
+        </ns1:BibliographicId>
+        <ns1:RequestType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/requesttype/requesttype.scm">Non-returnable Copy</ns1:RequestType>
+        <ns1:RequestScopeType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/requestscopetype/requestscopetype.scm">Bibliographic Item</ns1:RequestScopeType>
+        <ns1:ItemOptionalFields>
+            <ns1:ItemDescription>
+                <ns1:CopyNumber>2</ns1:CopyNumber>
+                <ns1:HoldingsInformation>
+                    <ns1:StructuredHoldingsData>
+                        <ns1:HoldingsEnumeration>
+                            <ns1:EnumerationLevelInstance>
+                                <ns1:EnumerationLevel>1</ns1:EnumerationLevel>
+                                <ns1:EnumerationCaption>Volume</ns1:EnumerationCaption>
+                                <ns1:EnumerationValue>v5</ns1:EnumerationValue>
+                            </ns1:EnumerationLevelInstance>
+                            <ns1:EnumerationLevelInstance>
+                                <ns1:EnumerationLevel>2</ns1:EnumerationLevel>
+                                <ns1:EnumerationCaption>Issue</ns1:EnumerationCaption>
+                                <ns1:EnumerationValue>7318</ns1:EnumerationValue>
+                            </ns1:EnumerationLevelInstance>
+                            <ns1:EnumerationLevelInstance>
+                                <ns1:EnumerationLevel>3</ns1:EnumerationLevel>
+                                <ns1:EnumerationCaption>Pages</ns1:EnumerationCaption>
+                                <ns1:EnumerationValue>111</ns1:EnumerationValue>
+                            </ns1:EnumerationLevelInstance>
+                            <ns1:EnumerationLevelInstance>
+                                <ns1:EnumerationLevel>4</ns1:EnumerationLevel>
+                                <ns1:EnumerationCaption>Issue date</ns1:EnumerationCaption>
+                                <ns1:EnumerationValue>1997</ns1:EnumerationValue>
+                            </ns1:EnumerationLevelInstance>
+                        </ns1:HoldingsEnumeration>
+                    </ns1:StructuredHoldingsData>
+                </ns1:HoldingsInformation>
+            </ns1:ItemDescription>
+            <ns1:Location>
+                <ns1:LocationType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/locationtype/locationtype.scm">Permanent Location</ns1:LocationType>
+                <ns1:LocationName>
+                    <ns1:LocationNameInstance>
+                        <ns1:LocationNameLevel>1</ns1:LocationNameLevel> <!-- OCLC Regsitry id of the institution -->
+                        <ns1:LocationNameValue>91475</ns1:LocationNameValue>
+                    </ns1:LocationNameInstance>
+                    <ns1:LocationNameInstance>
+                        <ns1:LocationNameLevel>2</ns1:LocationNameLevel> <!-- Holding code -->
+                        <ns1:LocationNameValue>EAST</ns1:LocationNameValue>
+                    </ns1:LocationNameInstance>
+                    <ns1:LocationNameInstance>
+                        <ns1:LocationNameLevel>3</ns1:LocationNameLevel> <!-- Shelving location -->
+                        <ns1:LocationNameValue>EAST Periodicals test</ns1:LocationNameValue>
+                    </ns1:LocationNameInstance>
+                </ns1:LocationName>
+            </ns1:Location>
+        </ns1:ItemOptionalFields>
+        <ns1:Ext>
+            <ns3:UserNote>Please make sure the copy is in color.</ns3:UserNote>
+        </ns1:Ext>
+    </ns1:RequestItem>
+</ns1:NCIPMessage>

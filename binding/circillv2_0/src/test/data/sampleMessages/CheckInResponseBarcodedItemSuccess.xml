@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd">
+    <!--
+    This indicates that the specified Item was successfully checked in.
+    The response includes the Item ID that was checked in, which should be exactly as it was provided in the request
+    since that is what the client understands. The example here includes an AgencyId, but that should only be present
+    if it was also present in the incoming ItemId.
+     -->
+    <ns1:CheckInItemResponse>
+        <ns1:ResponseHeader>
+            <ns1:FromSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WMS Circ</ns1:FromSystemId>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WSILL</ns1:ToSystemId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:ToAgencyId>
+        </ns1:ResponseHeader>
+        <ns1:ItemId>
+            <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            <ns1:ItemIdentifierType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/visibleitemidentifiertype/visibleitemidentifiertype.scm">Barcode</ns1:ItemIdentifierType>
+            <ns1:ItemIdentifierValue>ABCDE</ns1:ItemIdentifierValue>
+        </ns1:ItemId>
+    </ns1:CheckInItemResponse>
+</ns1:NCIPMessage>

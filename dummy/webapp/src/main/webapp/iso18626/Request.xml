@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:ISO18626Message
+        xmlns:ns1="http://illtransactions.org/2013/iso18626" ns1:version="v1_2_2017">
+    <ns1:request>
+        <ns1:header>
+            <ns1:supplyingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-NDOSU</ns1:agencyIdValue>
+            </ns1:supplyingAgencyId>
+            <ns1:requestingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-NDOSU</ns1:agencyIdValue>
+            </ns1:requestingAgencyId>
+            <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
+            <ns1:timestamp>2018-02-08T08:34:54Z</ns1:timestamp>
+            <ns1:requestingAgencyRequestId>my123</ns1:requestingAgencyRequestId>
+        </ns1:header>
+        <ns1:bibliographicInfo>
+            <ns1:title>Something about elephants</ns1:title>
+            <ns1:author>Warner, Mark PhD</ns1:author>
+        </ns1:bibliographicInfo>
+        <ns1:publicationInfo>
+            <ns1:publisher>Publisher</ns1:publisher>
+            <ns1:publicationType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/PublicationTypeList-V1.0">Book</ns1:publicationType>
+            <ns1:publicationDate>2010-03-02</ns1:publicationDate>
+            <ns1:placeOfPublication>New York</ns1:placeOfPublication>
+        </ns1:publicationInfo>
+        <ns1:serviceInfo>
+            <ns1:requestType>New</ns1:requestType>
+            <ns1:requestSubType>TransferRequest</ns1:requestSubType>
+            <ns1:requestingAgencyPreviousRequestId>PreviousRequestID-001</ns1:requestingAgencyPreviousRequestId>
+            <ns1:serviceType>CopyOrLoan</ns1:serviceType>
+            <ns1:serviceLevel ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/ServiceLevelList-V1.0">Normal</ns1:serviceLevel>
+            <ns1:preferredFormat ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/PreferredFormatList-V1.0">LargePrint</ns1:preferredFormat>
+            <ns1:needBeforeDate>2018-01-16T14:00:00Z</ns1:needBeforeDate>
+            <ns1:copyrightCompliance ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/CopyrightComplianceList-V1.0">US-CCG</ns1:copyrightCompliance>
+            <ns1:anyEdition>Y</ns1:anyEdition>
+            <ns1:startDate>2018-01-10T12:00:00Z</ns1:startDate>
+            <ns1:endDate>2018-01-12T18:00:00Z</ns1:endDate>
+            <ns1:note>Note</ns1:note>
+        </ns1:serviceInfo>
+        <ns1:supplierInfo>
+            <ns1:sortOrder>2</ns1:sortOrder>
+            <ns1:supplierCode>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-NDOSU</ns1:agencyIdValue>
+            </ns1:supplierCode>
+            <ns1:supplierDescription>Supplier Description</ns1:supplierDescription>
+            <ns1:bibliographicRecordId>
+                <ns1:bibliographicRecordIdentifierCode ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/BibliographicRecordIdCodeList-V1.0">OCLC</ns1:bibliographicRecordIdentifierCode>
+                <ns1:bibliographicRecordIdentifier>992790866</ns1:bibliographicRecordIdentifier>
+            </ns1:bibliographicRecordId>
+            <ns1:callNumber>CallNumber</ns1:callNumber>
+            <ns1:summaryHoldings>SummaryHoldings</ns1:summaryHoldings>
+            <ns1:availabilityNote>AvailabilityNote</ns1:availabilityNote>
+        </ns1:supplierInfo>
+        <ns1:requestedDeliveryInfo>
+            <ns1:sortOrder>5</ns1:sortOrder>
+            <ns1:address>
+                <ns1:physicalAddress>
+                    <ns1:line1>1234 City St.</ns1:line1>
+                    <ns1:line2>line2</ns1:line2>
+                    <ns1:locality>Town</ns1:locality>
+                    <ns1:postalCode>12345</ns1:postalCode>
+                    <ns1:region ns1:scheme="http://purl.org/dc/terms/ISO3166-2">US-OH</ns1:region>
+                    <ns1:country ns1:scheme="http://purl.org/dc/terms/ISO3166-1">US</ns1:country>
+                </ns1:physicalAddress>
+            </ns1:address>
+        </ns1:requestedDeliveryInfo>
+        <ns1:requestingAgencyInfo>
+            <ns1:name>Agency Name</ns1:name>
+            <ns1:contactName>Librarian Name</ns1:contactName>
+            <ns1:address>
+                <ns1:electronicAddress>
+                    <ns1:electronicAddressType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/ElectronicAddressType-V1.0">Email</ns1:electronicAddressType>
+                    <ns1:electronicAddressData>librarian@address.net</ns1:electronicAddressData>
+                </ns1:electronicAddress>
+            </ns1:address>
+        </ns1:requestingAgencyInfo>
+        <ns1:patronInfo>
+            <ns1:patronId>Patron-1234</ns1:patronId>
+            <ns1:surname>Surname</ns1:surname>
+            <ns1:givenName>Given</ns1:givenName>
+            <ns1:patronType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/PatronTypeList-V1.0">Adult</ns1:patronType>
+            <ns1:sendToPatron>N</ns1:sendToPatron>
+            <ns1:address>
+                <ns1:physicalAddress>
+                    <ns1:line1>Address Line 1</ns1:line1>
+                    <ns1:locality>OtherTown</ns1:locality>
+                    <ns1:postalCode>12354</ns1:postalCode>
+                    <ns1:region ns1:scheme="http://purl.org/dc/terms/ISO3166-2">US-OH</ns1:region>
+                    <ns1:country ns1:scheme="http://purl.org/dc/terms/ISO3166-1">US</ns1:country>
+                </ns1:physicalAddress>
+            </ns1:address>
+        </ns1:patronInfo>
+        <ns1:billingInfo>
+            <ns1:paymentMethod ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/PaymentMethodList-V1.0">Paypal</ns1:paymentMethod>
+            <ns1:maximumCosts>
+                <ns1:currencyCode ns1:scheme="http://www.bsi-global.com/Technical+Information/Publications/_Publications/tig90x.doc">USD</ns1:currencyCode>
+                <ns1:monetaryValue>99.99</ns1:monetaryValue>
+            </ns1:maximumCosts>
+            <ns1:billingMethod ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/BillingMethodList-V1.0">Invoice</ns1:billingMethod>
+            <ns1:billingName>Bill Name</ns1:billingName>
+            <ns1:address>
+                <ns1:physicalAddress>
+                    <ns1:line1>Address Line1</ns1:line1>
+                    <ns1:line2>Adresss Line2</ns1:line2>
+                    <ns1:locality>Town</ns1:locality>
+                    <ns1:postalCode>12356</ns1:postalCode>
+                    <ns1:region ns1:scheme="http://purl.org/dc/terms/ISO3166-2">US-OH</ns1:region>
+                    <ns1:country ns1:scheme="http://purl.org/dc/terms/ISO3166-1">US</ns1:country>
+                </ns1:physicalAddress>
+            </ns1:address>
+
+        </ns1:billingInfo>
+    </ns1:request>
+</ns1:ISO18626Message>

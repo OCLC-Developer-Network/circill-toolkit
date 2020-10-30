@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd">
+    <!--
+    This specifies that the given Item was checked out to the given User, and that it is due back on the given date.
+    The response includes the Item ID that was checked out, and the User ID that it was checked out to. These are exact
+    copies of the ones that were provided in the corresponding CheckOutItem request message since that is what the client
+    understands.
+    The DateDue field is the actual due date in Circulation, as modified by Policy. It might be different to the DesiredDueDate
+    if provided in the CheckOutItem request.
+    -->
+    <ns1:CheckOutItemResponse>
+        <ns1:ResponseHeader>
+            <ns1:FromSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WMS Circ</ns1:FromSystemId>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WSILL</ns1:ToSystemId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:ToAgencyId>
+        </ns1:ResponseHeader>
+        <ns1:ItemId>
+            <ns1:ItemIdentifierType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/visibleitemidentifiertype/visibleitemidentifiertype.scm">Barcode</ns1:ItemIdentifierType>
+            <ns1:ItemIdentifierValue>ABCDE</ns1:ItemIdentifierValue>
+        </ns1:ItemId>
+        <ns1:UserId>
+            <ns1:UserIdentifierType ns1:Scheme="http://oclc.org/ncip/schemes/userid/oclcids.scm">OCLC Institution Symbol</ns1:UserIdentifierType>
+            <ns1:UserIdentifierValue>NDOSU</ns1:UserIdentifierValue>
+        </ns1:UserId>
+        <ns1:DateDue>2018-02-01T12:34:56Z</ns1:DateDue>
+    </ns1:CheckOutItemResponse>
+</ns1:NCIPMessage>

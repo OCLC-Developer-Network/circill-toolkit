@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd">
+    <!--
+    This minimal response reports success for Institution "OCWMS" creating a temporary item with Barcode "ABCDE" for ILL Request "12345".
+     -->
+    <ns1:AcceptItemResponse>
+        <ns1:ResponseHeader>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:ToAgencyId>
+        </ns1:ResponseHeader>
+        <ns1:RequestId>
+            <ns1:RequestIdentifierValue>12345</ns1:RequestIdentifierValue>
+        </ns1:RequestId>
+        <ns1:ItemId>
+            <ns1:ItemIdentifierValue>ABCDE</ns1:ItemIdentifierValue>
+        </ns1:ItemId>
+    </ns1:AcceptItemResponse>
+</ns1:NCIPMessage>

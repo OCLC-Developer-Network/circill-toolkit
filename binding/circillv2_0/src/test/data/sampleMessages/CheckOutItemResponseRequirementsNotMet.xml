@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/ncip_v2_02.xsd">
+    <!--
+    This indicates that the item could not be checked out due to required fee and use restrictions not being met.
+    -->
+    <ns1:CheckOutItemResponse>
+        <ns1:ResponseHeader>
+            <ns1:FromSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WMS Circ</ns1:FromSystemId>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToSystemId ns1:Scheme="http://oclc.org/ncip/schemes/systemid/oclcsystemid.scm">WSILL</ns1:ToSystemId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid/symbol.scm">OCWMS</ns1:AgencyId>
+            </ns1:ToAgencyId>
+        </ns1:ResponseHeader>
+        <ns1:Problem>
+            <ns1:ProblemType ns1:Scheme="http://www.niso.org/ncip/v1_0/schemes/processingerrortype/checkoutitemprocessingerror.scm">Resource Cannot Be Provided</ns1:ProblemType>
+            <ns1:ProblemDetail>See Use Restrictions and Fee Requirements</ns1:ProblemDetail>
+        </ns1:Problem>
+        <ns1:RequiredFeeAmount>
+            <ns1:CurrencyCode ns1:Scheme="http://www.bsi-global.com/Technical+Information/Publications/_Publications/tig90x.doc">EUR</ns1:CurrencyCode>
+            <ns1:MonetaryValue>500</ns1:MonetaryValue>
+        </ns1:RequiredFeeAmount>
+        <ns1:RequiredItemUseRestrictionType
+                ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/itemuserestrictiontype/itemuserestrictiontype.scm">In Library Use Only</ns1:RequiredItemUseRestrictionType>
+    </ns1:CheckOutItemResponse>
+</ns1:NCIPMessage>

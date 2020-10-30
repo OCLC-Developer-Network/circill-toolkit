@@ -1,0 +1,2800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozer.sourceforge.net"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <configuration>
+        <custom-converters>
+
+            <!--
+                 These handle conversion from the JAXBElement that appears in classes where JAXB requires the getContent
+                 method to access its fields.
+            -->
+            <converter type="org.oclc.circill.toolkit.binding.jaxb.dozer.CalendarConverter">
+                <class-a>java.util.GregorianCalendar</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.jaxb.dozer.BigDecimalConverter">
+                <class-a>java.math.BigDecimal</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.jaxb.dozer.StringConverter">
+                <class-a>java.lang.String</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+
+
+            <!-- Any class which in the service package is a sub-class of SchemeValuePair must use a sub-class of
+                 BaseSchemeValuePairConverter to map to & from the JAXB SchemeValuePair class, and
+                 BaseJAXBElementSchemeValuePairConverter to map to & from the JAXBElement class. JAXBElements are used for fields
+                 of a JAXB class that requires the getContent method to access its fields; SchemeValuePair is used in the
+                 remaining JAXB classes.
+            -->
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyAddressRoleTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AgencyAddressRoleType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyAddressRoleTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AgencyAddressRoleType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyElementTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AgencyElementType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyElementTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AgencyElementType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyIdSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.AgencyId</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyIdJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.AgencyId</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyUserPrivilegeTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AgencyUserPrivilegeType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AgencyUserPrivilegeTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AgencyUserPrivilegeType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ApplicationProfileSupportedTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.ApplicationProfileSupportedType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ApplicationProfileSupportedTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.ApplicationProfileSupportedType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ApplicationProfileTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.ApplicationProfileType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ApplicationProfileTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.ApplicationProfileType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AuthenticationDataFormatTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AuthenticationDataFormatType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AuthenticationDataFormatTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AuthenticationDataFormatType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AuthenticationInputTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AuthenticationInputType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AuthenticationInputTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AuthenticationInputType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AuthenticationPromptTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AuthenticationPromptType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.AuthenticationPromptTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.AuthenticationPromptType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BibliographicItemIdentifierCodeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.BibliographicItemIdentifierCode</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BibliographicItemIdentifierCodeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.BibliographicItemIdentifierCode</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BibliographicLevelSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.BibliographicLevel</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BibliographicLevelJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.BibliographicLevel</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BibliographicRecordIdentifierCodeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.BibliographicRecordIdentifierCode</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BibliographicRecordIdentifierCodeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.BibliographicRecordIdentifierCode</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BlockOrTrapTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.BlockOrTrapType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.BlockOrTrapTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.BlockOrTrapType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.CirculationStatusSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.CirculationStatus</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.CirculationStatusJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.CirculationStatus</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ComponentIdentifierTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ComponentIdentifierType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ComponentIdentifierTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ComponentIdentifierType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ConsortiumAgreementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ConsortiumAgreement</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ConsortiumAgreementJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ConsortiumAgreement</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.CurrencyCodeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.CurrencyCode</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.CurrencyCodeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.CurrencyCode</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ElectronicAddressTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.ElectronicAddressType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ElectronicAddressTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.ElectronicAddressType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ElectronicDataFormatTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ElectronicDataFormatType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ElectronicDataFormatTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ElectronicDataFormatType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ElementTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ElementType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.FiscalActionTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.FiscalActionType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.FiscalActionTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.FiscalActionType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.FiscalTransactionTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.FiscalTransactionType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.FiscalTransactionTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.FiscalTransactionType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.FromSystemIdSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.FromSystemId</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.FromSystemIdJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.FromSystemId</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemDescriptionLevelSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemDescriptionLevel</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemDescriptionLevelJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemDescriptionLevel</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemElementTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemElementType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemElementTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemElementType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemIdentifierTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemIdentifierType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemIdentifierTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemIdentifierType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemUseRestrictionTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemUseRestrictionType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ItemUseRestrictionTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemUseRestrictionType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.LanguageSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.Language</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.LanguageJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.Language</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.LocationTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.LocationType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.LocationTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.LocationType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.MediumTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.MediumType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.MediumTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.MediumType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.NoticeTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.NoticeType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.NoticeTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.NoticeType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.OrganizationNameTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.OrganizationNameType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.OrganizationNameTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.OrganizationNameType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PaymentMethodTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.PaymentMethodType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PaymentMethodTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.base.PaymentMethodType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PhysicalAddressTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.PhysicalAddressType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PhysicalAddressTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.PhysicalAddressType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PhysicalConditionTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.PhysicalConditionType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PhysicalConditionTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.PhysicalConditionType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PickupLocationSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.PickupLocation</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.PickupLocationJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.PickupLocation</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ProblemTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ProblemType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ProblemTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ProblemType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestedActionTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestedActionType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestedActionTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestedActionType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestElementTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestElementType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestElementTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestElementType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestIdentifierTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestIdentifierType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestIdentifierTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestIdentifierType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestScopeTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestScopeType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestScopeTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestScopeType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestStatusTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestStatusType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestStatusTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestStatusType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.RequestTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.SecurityMarkerSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.SecurityMarker</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.SecurityMarkerJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.SecurityMarker</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.SortFieldSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.SortField</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.SortOrderTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.SortOrderType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ToSystemIdSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.ToSystemId</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ToSystemIdJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.common.ToSystemId</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UnstructuredAddressTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UnstructuredAddressType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UnstructuredAddressTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UnstructuredAddressType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserAddressRoleTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserAddressRoleType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserAddressRoleTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserAddressRoleType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserElementTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserElementType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserElementTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserElementType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserIdentifierTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserIdentifierType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserIdentifierTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserIdentifierType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserLanguageSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserLanguage</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserLanguageJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserLanguage</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserPrivilegeStatusTypeSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserPrivilegeStatusType</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.UserPrivilegeStatusTypeJAXBElementSchemeValuePairConverter">
+                <class-a>org.oclc.circill.toolkit.service.ncip.UserPrivilegeStatusType</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+
+            <!-- Handle JAXB-generated objects that don't have specified fields, just the getContent method. -->
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.CancelRequestItemInitiationData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CancelRequestItem</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.CancelRequestItemResponseData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CancelRequestItemResponse</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ChronologyLevelInstance</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ChronologyLevelInstance</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.Destination</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Destination</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.EnumerationLevelInstance</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.EnumerationLevelInstance</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemRequestCancelledInitiationData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemRequestCancelled</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.ItemShippedInitiationData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemShipped</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.LookupItemResponseData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupItemResponse</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.LookupRequestResponseData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupRequestResponse</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.PersonalNameInformation</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.PersonalNameInformation</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestedItem</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RequestedItem</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestItemInitiationData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RequestItem</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.RequestItemResponseData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RequestItemResponse</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.StructuredAddress</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.StructuredAddress</class-b>
+            </converter>
+            <converter type="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ContentMappingFactory">
+                <class-a>org.oclc.circill.toolkit.service.ncip.StructuredHoldingsData</class-a>
+                <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.StructuredHoldingsData</class-b>
+            </converter>
+
+        </custom-converters>
+    </configuration>
+
+    <!-- Handle mapping objects with fields that require non-default behavior:
+         1) the field is repeatable in JAXB object so in the service object its name is plural (use field names and
+         a hint for the type of the objects in the JAXB object's List).
+         2) the field is an ItemElementType in the JAXB object and a boolean flag in the service object (use the
+         BaseSchemeValuePairToBooleanConverter custom converter).
+         3) the field is an emtpy element in the JAXB object and a boolean flag in the service object (use the
+          EmptyFieldConverter custom converter).
+         4) the field is an extension (use the BaseExtensionConverter custom converter).
+    -->
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AcceptItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AcceptItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.IndeterminateLoanPeriodFlag">
+            <a>indeterminateLoanPeriodFlag</a>
+            <b>indeterminateLoanPeriodFlag</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RenewalNotPermitted">
+            <a>renewalNotPermitted</a>
+            <b>renewalNotPermitted</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.NonReturnableFlag">
+            <a>nonReturnableFlag</a>
+            <b>nonReturnableFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AcceptItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AcceptItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AddAgencyFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AddAgencyFields</class-b>
+        <field>
+            <a>authenticationPrompts</a>
+            <b>authenticationPrompt</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationPrompt</b-hint>
+        </field>
+        <field>
+            <a>applicationProfileSupportedTypes</a>
+            <b>applicationProfileSupportedType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>organizationNameInformations</a>
+            <b>organizationNameInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.OrganizationNameInformation</b-hint>
+        </field>
+        <field>
+            <a>consortiumAgreements</a>
+            <b>consortiumAgreement</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyUserPrivilegeTypes</a>
+            <b>agencyUserPrivilegeType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyAddressInformations</a>
+            <b>agencyAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyAddressInformation</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AddItemFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AddItemFields</class-b>
+        <field>
+            <a>locations</a>
+            <b>location</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Location</b-hint>
+        </field>
+        <field>
+            <a>itemUseRestrictionTypes</a>
+            <b>itemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SensitizationFlag">
+            <a>sensitizationFlag</a>
+            <b>sensitizationFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AddUserFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AddUserFields</class-b>
+        <field>
+            <a>userPrivileges</a>
+            <b>userPrivilege</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserPrivilege</b-hint>
+        </field>
+        <field>
+            <a>userLanguages</a>
+            <b>userLanguage</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>userAddressInformations</a>
+            <b>userAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserAddressInformation</b-hint>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field>
+            <a>blockOrTraps</a>
+            <b>blockOrTrap</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BlockOrTrap</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AgencyCreatedInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyCreated</class-b>
+        <field>
+            <a>authenticationPrompts</a>
+            <b>authenticationPrompt</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationPrompt</b-hint>
+        </field>
+        <field>
+            <a>applicationProfileSupportedTypes</a>
+            <b>applicationProfileSupportedType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>organizationNameInformations</a>
+            <b>organizationNameInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.OrganizationNameInformation</b-hint>
+        </field>
+        <field>
+            <a>consortiumAgreements</a>
+            <b>consortiumAgreement</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyUserPrivilegeTypes</a>
+            <b>agencyUserPrivilegeType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyAddressInformations</a>
+            <b>agencyAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyAddressInformation</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AgencyCreatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyCreatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.AgencyUpdatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyUpdatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.BibInformation</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BibInformation</class-b>
+        <field>
+            <a>holdingsSets</a>
+            <b>holdingsSet</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.HoldingsSet</b-hint>
+        </field>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+        <field>
+            <a>currentRequesters</a>
+            <b>currentRequester</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CurrentRequester</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.BibliographicDescription</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BibliographicDescription</class-b>
+        <field>
+            <a>bibliographicItemIds</a>
+            <b>bibliographicItemId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BibliographicItemId</b-hint>
+        </field>
+        <field>
+            <a>bibliographicRecordIds</a>
+            <b>bibliographicRecordId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BibliographicRecordId</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CancelRecallItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CancelRecallItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CancelRecallItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CancelRecallItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CheckInItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CheckInItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CheckInItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CheckInItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CheckOutItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CheckOutItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field>
+            <a>acknowledgedItemUseRestrictionTypes</a>
+            <b>acknowledgedItemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ResourceDesired">
+            <a>resourceDesired</a>
+            <b>resourceDesired</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ELECTRONIC_RESOURCE">
+            <a>electronicResourceDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CheckOutItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CheckOutItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+        <field>
+            <a>requiredItemUseRestrictionTypes</a>
+            <b>requiredItemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.IndeterminateLoanPeriodFlag">
+            <a>indeterminateLoanPeriodFlag</a>
+            <b>indeterminateLoanPeriodFlag</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.NonReturnableFlag">
+            <a>nonReturnableFlag</a>
+            <b>nonReturnableFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CirculationStatusChangeReportedInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CirculationStatusChangeReported</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemReportedMissing">
+            <a>itemReportedMissing</a>
+            <b>itemReportedMissing</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemReportedLost">
+            <a>itemReportedLost</a>
+            <b>itemReportedLost</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemReportedNeverBorrowed">
+            <a>itemReportedNeverBorrowed</a>
+            <b>itemReportedNeverBorrowed</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CirculationStatusChangeReportedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CirculationStatusChangeReportedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CirculationStatusUpdatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CirculationStatusUpdatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateAgencyInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateAgency</class-b>
+        <field>
+            <a>authenticationPrompts</a>
+            <b>authenticationPrompt</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationPrompt</b-hint>
+        </field>
+        <field>
+            <a>applicationProfileSupportedTypes</a>
+            <b>applicationProfileSupportedType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>organizationNameInformations</a>
+            <b>organizationNameInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.OrganizationNameInformation</b-hint>
+        </field>
+        <field>
+            <a>consortiumAgreements</a>
+            <b>consortiumAgreement</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyUserPrivilegeTypes</a>
+            <b>agencyUserPrivilegeType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyAddressInformations</a>
+            <b>agencyAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyAddressInformation</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateAgencyResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateAgencyResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateItem</class-b>
+        <field>
+            <a>locations</a>
+            <b>location</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Location</b-hint>
+        </field>
+        <field>
+            <a>itemUseRestrictionTypes</a>
+            <b>itemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SensitizationFlag">
+            <a>sensitizationFlag</a>
+            <b>sensitizationFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateUserInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateUser</class-b>
+        <field>
+            <a>userPrivileges</a>
+            <b>userPrivilege</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserPrivilege</b-hint>
+        </field>
+        <field>
+            <a>userLanguages</a>
+            <b>userLanguage</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>userAddressInformations</a>
+            <b>userAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserAddressInformation</b-hint>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field>
+            <a>blockOrTraps</a>
+            <b>blockOrTrap</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BlockOrTrap</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateUserFiscalTransactionInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateUserFiscalTransaction</class-b>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateUserFiscalTransactionResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateUserFiscalTransactionResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.CreateUserResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CreateUserResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.DeleteAgencyFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.DeleteAgencyFields</class-b>
+        <field>
+            <a>authenticationPrompts</a>
+            <b>authenticationPrompt</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationPrompt</b-hint>
+        </field>
+        <field>
+            <a>applicationProfileSupportedTypes</a>
+            <b>applicationProfileSupportedType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>organizationNameInformations</a>
+            <b>organizationNameInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.OrganizationNameInformation</b-hint>
+        </field>
+        <field>
+            <a>consortiumAgreements</a>
+            <b>consortiumAgreement</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyUserPrivilegeTypes</a>
+            <b>agencyUserPrivilegeType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyAddressInformations</a>
+            <b>agencyAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyAddressInformation</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.DeleteItemFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.DeleteItemFields</class-b>
+        <field>
+            <a>locations</a>
+            <b>location</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Location</b-hint>
+        </field>
+        <field>
+            <a>itemUseRestrictionTypes</a>
+            <b>itemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SensitizationFlag">
+            <a>sensitizationFlag</a>
+            <b>sensitizationFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.DeleteItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.DeleteItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.DeleteUserInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.DeleteUser</class-b>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.DeleteUserFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.DeleteUserFields</class-b>
+        <field>
+            <a>userPrivileges</a>
+            <b>userPrivilege</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserPrivilege</b-hint>
+        </field>
+        <field>
+            <a>userLanguages</a>
+            <b>userLanguage</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>userAddressInformations</a>
+            <b>userAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserAddressInformation</b-hint>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field>
+            <a>blockOrTraps</a>
+            <b>blockOrTrap</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BlockOrTrap</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.DeleteUserResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.DeleteUserResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.FiscalTransactionInformation</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.FiscalTransactionInformation</class-b>
+        <field>
+            <a>relatedFiscalTransactionReferenceIds</a>
+            <b>relatedFiscalTransactionReferenceId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RelatedFiscalTransactionReferenceId</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.HoldingsChronology</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.HoldingsChronology</class-b>
+        <field>
+            <a>chronologyLevelInstances</a>
+            <b>chronologyLevelInstance</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ChronologyLevelInstance</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.HoldingsEnumeration</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.HoldingsEnumeration</class-b>
+        <field>
+            <a>enumerationLevelInstances</a>
+            <b>enumerationLevelInstance</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.EnumerationLevelInstance</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.HoldingsInformation</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.HoldingsInformation</class-b>
+        <field>
+            <a>structuredHoldingsDatas</a>
+            <b>structuredHoldingsData</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.StructuredHoldingsData</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.HoldingsSet</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.HoldingsSet</class-b>
+        <field>
+            <a>itemInformations</a>
+            <b>itemInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemInformation</b-hint>
+        </field>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemCheckedInResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemCheckedInResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemCheckedOutInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemCheckedOut</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.IndeterminateLoanPeriodFlag">
+            <a>indeterminateLoanPeriodFlag</a>
+            <b>indeterminateLoanPeriodFlag</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ElectronicResourceProvidedFlag">
+            <a>electronicResourceProvidedFlag</a>
+            <b>electronicResourceProvidedFlag</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.NonReturnableFlag">
+            <a>nonReturnableFlag</a>
+            <b>nonReturnableFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemCheckedOutResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemCheckedOutResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemCreatedInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemCreated</class-b>
+        <field>
+            <a>locations</a>
+            <b>location</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Location</b-hint>
+        </field>
+        <field>
+            <a>itemUseRestrictionTypes</a>
+            <b>itemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SensitizationFlag">
+            <a>sensitizationFlag</a>
+            <b>sensitizationFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemCreatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemCreatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemDetails</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemDetails</class-b>
+        <field>
+            <a>dateReneweds</a>
+            <b>dateRenewed</b>
+            <a-hint>java.util.GregorianCalendar</a-hint>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.XMLGregorianCalendar</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.IndeterminateLoanPeriodFlag">
+            <a>indeterminateLoanPeriodFlag</a>
+            <b>indeterminateLoanPeriodFlag</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.NonReturnableFlag">
+            <a>nonReturnableFlag</a>
+            <b>nonReturnableFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemInformation</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemInformation</class-b>
+        <field>
+            <a>requestIds</a>
+            <b>requestId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RequestId</b-hint>
+        </field>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+        <field>
+            <a>currentRequesters</a>
+            <b>currentRequester</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CurrentRequester</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemOptionalFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemOptionalFields</class-b>
+        <field>
+            <a>locations</a>
+            <b>location</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Location</b-hint>
+        </field>
+        <field>
+            <a>itemUseRestrictionTypes</a>
+            <b>itemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SensitizationFlag">
+            <a>sensitizationFlag</a>
+            <b>sensitizationFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemRecallCancelledResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemRecallCancelledResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemRecalledResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemRecalledResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemReceivedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemReceivedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemRenewedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemRenewedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemRequestCancelledResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemRequestCancelledResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemRequestUpdatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemRequestUpdatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemRequestedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemRequestedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemShippedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemShippedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemTransaction</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemTransaction</class-b>
+        <field>
+            <a>currentRequesters</a>
+            <b>currentRequester</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CurrentRequester</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ItemUpdatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemUpdatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LoanedItem</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LoanedItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.IndeterminateLoanPeriodFlag">
+            <a>indeterminateLoanPeriodFlag</a>
+            <b>indeterminateLoanPeriodFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LocationName</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LocationName</class-b>
+        <field>
+            <a>locationNameInstances</a>
+            <b>locationNameInstance</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LocationNameInstance</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupAgencyInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupAgency</class-b>
+        <field>
+            <a>agencyElementTypes</a>
+            <b>agencyElementType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupAgencyResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupAgencyResponse</class-b>
+        <field>
+            <a>authenticationPrompts</a>
+            <b>authenticationPrompt</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationPrompt</b-hint>
+        </field>
+        <field>
+            <a>applicationProfileSupportedTypes</a>
+            <b>applicationProfileSupportedType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>organizationNameInformations</a>
+            <b>organizationNameInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.OrganizationNameInformation</b-hint>
+        </field>
+        <field>
+            <a>consortiumAgreements</a>
+            <b>consortiumAgreement</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyUserPrivilegeTypes</a>
+            <b>agencyUserPrivilegeType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>agencyAddressInformations</a>
+            <b>agencyAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AgencyAddressInformation</b-hint>
+        </field>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CurrentRequestersDesired">
+            <a>currentRequestersDesired</a>
+            <b>currentRequestersDesired</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CurrentBorrowerDesired">
+            <a>currentBorrowerDesired</a>
+            <b>currentBorrowerDesired</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ELECTRONIC_RESOURCE">
+            <a>electronicResourceDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupItemSetInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupItemSet</class-b>
+        <field>
+            <a>itemIds</a>
+            <b>itemId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemId</b-hint>
+        </field>
+        <field>
+            <a>bibliographicIds</a>
+            <b>bibliographicId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BibliographicId</b-hint>
+        </field>
+        <field>
+            <a>holdingsSetIds</a>
+            <b>holdingsSetId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.String</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CurrentRequestersDesired">
+            <a>currentRequestersDesired</a>
+            <b>currentRequestersDesired</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.CurrentBorrowerDesired">
+            <a>currentBorrowerDesired</a>
+            <b>currentBorrowerDesired</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupItemSetResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupItemSetResponse</class-b>
+        <field>
+            <a>bibInformations</a>
+            <b>bibInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BibInformation</b-hint>
+        </field>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupRequestInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupRequest</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field>
+            <a>requestElementTypes</a>
+            <b>requestElementType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupUserInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupUser</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LoanedItemsDesired">
+            <a>loanedItemsDesired</a>
+            <b>loanedItemsDesired</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RequestedItemsDesired">
+            <a>requestedItemsDesired</a>
+            <b>requestedItemsDesired</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserFiscalAccountDesired">
+            <a>userFiscalAccountDesired</a>
+            <b>userFiscalAccountDesired</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.LookupUserResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupUserResponse</class-b>
+        <field>
+            <a>requestedItems</a>
+            <b>requestedItem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RequestedItem</b-hint>
+        </field>
+        <field>
+            <a>requestedItemsCounts</a>
+            <b>requestedItemsCount</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RequestedItemsCount</b-hint>
+        </field>
+        <field>
+            <a>userFiscalAccounts</a>
+            <b>userFiscalAccount</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserFiscalAccount</b-hint>
+        </field>
+        <field>
+            <a>loanedItemsCounts</a>
+            <b>loanedItemsCount</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LoanedItemsCount</b-hint>
+        </field>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+        <field>
+            <a>loanedItems</a>
+            <b>loanedItem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LoanedItem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.NameInformation</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.NameInformation</class-b>
+        <field>
+            <a>organizationNameInformations</a>
+            <b>organizationNameInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.OrganizationNameInformation</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.NCIPMessage</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.NCIPMessage</class-b>
+        <field>
+            <a>version</a>
+            <b>version</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ExtensionConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.LookupItemSetInitiationData,org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupItemSet">
+            <a>lookupItemSet</a>
+            <b>ext</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ExtensionConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.LookupItemSetResponseData,org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.LookupItemSetResponse">
+            <a>lookupItemSetResponse</a>
+            <b>ext</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_ProblemResponseConverter">
+            <a>problemResponse</a>
+            <b>problem</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.PromptInput</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.PromptInput</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SensitiveDataFlag">
+            <a>sensitiveDataFlag</a>
+            <b>sensitiveDataFlag</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.RecallItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RecallItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.RecallItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RecallItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.RenewItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RenewItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field>
+            <a>acknowledgedItemUseRestrictionTypes</a>
+            <b>acknowledgedItemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.RenewItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.RenewItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+        <field>
+            <a>requiredItemUseRestrictionTypes</a>
+            <b>requiredItemUseRestrictionType</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ReportCirculationStatusChangeInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ReportCirculationStatusChange</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemReportedMissing">
+            <a>itemReportedMissing</a>
+            <b>itemReportedMissing</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemReportedLost">
+            <a>itemReportedLost</a>
+            <b>itemReportedLost</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.jaxb.dozer.EmptyFieldConverter"
+               custom-converter-param="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ItemReportedNeverBorrowed">
+            <a>itemReportedNeverBorrowed</a>
+            <b>itemReportedNeverBorrowed</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.ReportCirculationStatusChangeResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.ReportCirculationStatusChangeResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.SendUserNoticeResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SendUserNoticeResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.SummaryHoldingsInformation</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SummaryHoldingsInformation</class-b>
+        <field>
+            <a>structuredHoldingsDatas</a>
+            <b>structuredHoldingsData</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.StructuredHoldingsData</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UndoCheckOutItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UndoCheckOutItem</class-b>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UndoCheckOutItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UndoCheckOutItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UpdateAgencyResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UpdateAgencyResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UpdateCirculationStatusResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UpdateCirculationStatusResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UpdateItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UpdateItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UpdateRequestItemInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UpdateRequestItem</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.AUTHENTICATION_INPUT">
+            <a>authenticationInputDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.BLOCK_OR_TRAP">
+            <a>blockOrTrapDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.DATE_OF_BIRTH">
+            <a>dateOfBirthDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.NAME_INFORMATION">
+            <a>nameInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ADDRESS_INFORMATION">
+            <a>userAddressInformationDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_LANGUAGE">
+            <a>userLanguageDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_PRIVILEGE">
+            <a>userPrivilegeDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.USER_ID">
+            <a>userIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.PREVIOUS_USER_ID">
+            <a>previousUserIdDesired</a>
+            <b>userElementType</b>
+        </field>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.BIBLIOGRAPHIC_DESCRIPTION">
+            <a>bibliographicDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.CIRCULATION_STATUS">
+            <a>circulationStatusDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.HOLD_QUEUE_LENGTH">
+            <a>holdQueueLengthDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_DESCRIPTION">
+            <a>itemDescriptionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.ITEM_USE_RESTRICTION_TYPE">
+            <a>itemUseRestrictionTypeDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.LOCATION">
+            <a>locationDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.PHYSICAL_CONDITION">
+            <a>physicalConditionDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SECURITY_MARKER">
+            <a>securityMarkerDesired</a>
+            <b>itemElementType</b>
+        </field>
+        <field custom-converter="org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer.ILSDIv1_0_bc_SchemeValuePairToBooleanConverter"
+               custom-converter-param="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.SENSITIZATION_FLAG">
+            <a>sensitizationFlagDesired</a>
+            <b>itemElementType</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UpdateRequestItemResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UpdateRequestItemResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UpdateUserInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UpdateUser</class-b>
+        <field>
+            <a>authenticationInputs</a>
+            <b>authenticationInput</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AuthenticationInput</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UpdateUserResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UpdateUserResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserCreatedInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserCreated</class-b>
+        <field>
+            <a>userPrivileges</a>
+            <b>userPrivilege</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserPrivilege</b-hint>
+        </field>
+        <field>
+            <a>userLanguages</a>
+            <b>userLanguage</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>userAddressInformations</a>
+            <b>userAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserAddressInformation</b-hint>
+        </field>
+        <field>
+            <a>blockOrTraps</a>
+            <b>blockOrTrap</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BlockOrTrap</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserCreatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserCreatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserFiscalAccount</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserFiscalAccount</class-b>
+        <field>
+            <a>accountDetails</a>
+            <b>accountDetails</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.AccountDetails</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserFiscalTransactionCreatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserFiscalTransactionCreatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserNoticeDetails</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserNoticeDetails</class-b>
+        <field>
+            <a>noticeItems</a>
+            <b>noticeItem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.NoticeItem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserNoticeSentResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserNoticeSentResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserOptionalFields</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserOptionalFields</class-b>
+        <field>
+            <a>userPrivileges</a>
+            <b>userPrivilege</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserPrivilege</b-hint>
+        </field>
+        <field>
+            <a>userLanguages</a>
+            <b>userLanguage</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.SchemeValuePair</b-hint>
+        </field>
+        <field>
+            <a>previousUserIds</a>
+            <b>previousUserId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.PreviousUserId</b-hint>
+        </field>
+        <field>
+            <a>userAddressInformations</a>
+            <b>userAddressInformation</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserAddressInformation</b-hint>
+        </field>
+        <field>
+            <a>blockOrTraps</a>
+            <b>blockOrTrap</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.BlockOrTrap</b-hint>
+        </field>
+        <field>
+            <a>userIds</a>
+            <b>userId</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserId</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.UserUpdatedResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.UserUpdatedResponse</class-b>
+        <field>
+            <a>problems</a>
+            <b>problem</b>
+            <b-hint>org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem</b-hint>
+        </field>
+    </mapping>
+
+</mappings>

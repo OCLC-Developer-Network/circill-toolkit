@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<!--
+        * Copyright (c) 2018 OCLC, Inc.
+        *
+        * This program is free software; you can redistribute it and/or modify it
+        * under the terms of the MIT/X11 license. The text of the license can be
+        * found at http://www.opensource.org/licenses/mit-license.php.
+        *
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <artifactId>binding-iso18626</artifactId>
+    <version>0.25-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Circ/ILL Toolkit: Binding: ISO 18626</name>
+    <description>Circ/ILL Toolkit: Binding for ISO ILL 18626</description>
+
+    <parent>
+        <groupId>org.oclc.circill.toolkit</groupId>
+        <artifactId>binding</artifactId>
+        <version>0.25-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <jacoco.coverage.minimum>0.66</jacoco.coverage.minimum>
+    </properties>
+
+    <dependencies>
+
+        <!-- >>>>> These dependencies are sorted by artifactId <<<<< -->
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-jar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-jar</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-iso18626</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-iso18626</artifactId>
+        </dependency>
+
+        <!-- >>>>> These dependencies are sorted by groupId / artifactId <<<<< -->
+
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.castor</groupId>
+            <artifactId>castor-xml-diff</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/xsd</directory>
+                <includes>
+                    <include>**/*.xsd</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <inherited>true</inherited>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-standard-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${basedir}/src/main/xsd</schemaDirectory>
+                            <schemaIncludes>
+                                <include>ISO-18626-v1_2.xsd</include>
+                            </schemaIncludes>
+                            <bindingIncludes>
+                                <include>ISO-18626-v1_2.xjb</include>
+                            </bindingIncludes>
+                            <extension>true</extension>
+                            <removeOldOutput>false</removeOldOutput>
+                            <generateDirectory>${project.build.directory}/generated-sources/jaxb</generateDirectory>
+                            <generatePackage>org.oclc.circill.toolkit.binding.iso18626.jaxb.elements</generatePackage>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-xjc</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>true</failOnWarning>
+                            <usedDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.codehaus.castor:castor-xml-diff</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.glassfish.jaxb:jaxb-core</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.hamcrest:hamcrest-library</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:common-iso18626</ignoredUnusedDeclaredDependencies>
+                            </usedDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:ISO18626Message
+        xmlns:ns1="http://illtransactions.org/2013/iso18626" ns1:version="v1_2_2017">
+    <ns1:requestConfirmation>
+        <ns1:confirmationHeader>
+            <ns1:supplyingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>US-ocolcwe</ns1:agencyIdValue>
+            </ns1:supplyingAgencyId>
+            <ns1:requestingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>US-ocolcm</ns1:agencyIdValue>
+            </ns1:requestingAgencyId>
+            <ns1:timestamp>2018-02-08T08:34:54Z</ns1:timestamp>
+            <ns1:requestingAgencyRequestId></ns1:requestingAgencyRequestId>
+            <ns1:multipleItemRequestId>what's this</ns1:multipleItemRequestId>
+            <ns1:timestampReceived>2018-02-08T08:44:54Z</ns1:timestampReceived>
+            <ns1:messageStatus>ERROR</ns1:messageStatus>
+        </ns1:confirmationHeader>
+        <ns1:errorData>
+            <ns1:errorType>BadlyFormedMessage</ns1:errorType>
+            <ns1:errorValue>Some explanation of the error here</ns1:errorValue>
+        </ns1:errorData>
+    </ns1:requestConfirmation>
+</ns1:ISO18626Message>

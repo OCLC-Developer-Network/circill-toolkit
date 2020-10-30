@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:NCIPMessage
+        xmlns:ns1="http://www.niso.org/2008/ncip" ns1:version="http://www.niso.org/schemas/ncip/v2_02/imp1/xsd/ncip_v2_02.xsd">
+    <ns1:ItemRequestCancelledResponse>
+        <ns1:ResponseHeader>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://www.niso.org/ncip/v2_0/imp1/schemes/registryid/registryid.scm">registry_id</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://www.niso.org/ncip/v2_0/imp1/schemes/registryid/registryid.scm">registry_id</ns1:AgencyId>
+            </ns1:ToAgencyId>
+        </ns1:ResponseHeader>
+    </ns1:ItemRequestCancelledResponse>
+</ns1:NCIPMessage>

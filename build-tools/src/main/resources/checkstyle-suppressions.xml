@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <!--  Suppress checks for test sources -->
+    <suppress files="[/\\]test[/\\]" checks=".*"/>
+    <!--  Suppress checks for .idea caches, etc. -->
+    <suppress files="[/\\]\.idea[/\\]" checks=".*"/>
+    <!--  Suppress checks for .git caches, etc. -->
+    <suppress files="[/\\]\.git[/\\]" checks=".*"/>
+    <!--  Suppress checks for build-tools. -->
+    <suppress files="[/\\]build-tools[/\\]" checks=".*"/>
+    <!--  Suppress checks for maven-generated files -->
+    <suppress files="[/\\]target[/\\]" checks=".*"/>
+    <!--  Suppress checks for archives, classes, images and other binary files, logs xml files: -->
+    <suppress files=".+\.(?:jar|zip|war|class|tar|bin|png|gif|jpg|jpeg|log|xml|xls|iml|csv|xjb|xsd|DS_Store)$" checks=".*"/>
+    <!--  Disable magic number checks for test classes  -->
+    <suppress checks="MagicNumberCheck" files="[/\\]test[/\\]java[/\\]"/>
+    <!--  Exclude generated code (e.g. JAXB beans)  -->
+    <suppress checks="." files=".*[\\/]jaxb][\\/]elements[\\/].*"/>
+    <!--  Exclude copyright header check from property files  -->
+    <suppress checks="RegexpHeaderCheck" files=".*\.properties"/>
+    <!-- Allow test class methods to omit Javadoc -->
+    <suppress checks="MissingJavadocMethod" files="[/\\]test[/\\]java[/\\]"/>
+    <suppress checks="JavadocMethod" files="[/\\]test[/\\]java[/\\]"/>
+    <suppress checks="JavadocType" files="[/\\]test[/\\]java[/\\]"/>
+    <suppress checks="MethodName" files="[/\\]test[/\\]java[/\\]"/>
+</suppressions>

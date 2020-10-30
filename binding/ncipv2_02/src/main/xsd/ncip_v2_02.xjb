@@ -1,0 +1,14 @@
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" version="2.1">
+    <globalBindings
+            generateIsSetMethod="false">
+        <javaType name="java.math.BigDecimal" xmlType="xs:integer"/>
+        <javaType name="javax.xml.datatype.XMLGregorianCalendar" xmlType="xs:dateTime"
+                  parseMethod="org.oclc.circill.toolkit.binding.jaxb.DatatypeConverter.parseDateTime"
+                  printMethod="org.oclc.circill.toolkit.binding.jaxb.DatatypeConverter.printDateTime"/>
+    </globalBindings>
+    <bindings schemaLocation="ncip_v2_02.xsd">
+        <schemaBindings>
+            <package name="org.oclc.circill.toolkit.binding.ncipv2_02.jaxb.elements"/>
+        </schemaBindings>
+    </bindings>
+</bindings>

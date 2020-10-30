@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<NCIPMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:ncip="http://www.niso.org/2008/ncip"
+             xmlns="http://www.niso.org/2008/ncip"
+             xsi:schemaLocation="http://www.niso.org/2008/ncip http://www.niso.org/schemas/ncip/v2_01/ncip_v2_01.xsd"
+             ncip:version="http://www.niso.org/schemas/ncip/v2_01/imp1/xsd/ncip_v2_01.xsd">
+    <UpdateRequestItem>
+        <InitiationHeader>
+            <FromAgencyId>
+                <AgencyId ncip:Scheme="http://oclc.org/ncip/schemes/agencyid.scm">91475</AgencyId>
+            </FromAgencyId>
+            <ToAgencyId>
+                <AgencyId>91475</AgencyId>
+            </ToAgencyId>
+            <ApplicationProfileType ncip:Scheme="http://worldcat.org/ncip/schemes/v2/extensions/applicationprofiletype.scm">Version 2011</ApplicationProfileType>
+        </InitiationHeader>
+        <RequestId>
+            <AgencyId>91475</AgencyId>
+            <RequestIdentifierValue>12039123</RequestIdentifierValue>
+        </RequestId>
+        <DeleteRequestFields>
+            <PickupLocation>125569</PickupLocation>
+        </DeleteRequestFields>
+        <AddRequestFields>
+            <PickupLocation>125572</PickupLocation>
+        </AddRequestFields>
+    </UpdateRequestItem>
+</NCIPMessage>

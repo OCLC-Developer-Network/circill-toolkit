@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NCIPVersionMessage
+        version="http://www.niso.org/ncip/v1_0/imp1/xsd/ncip_version.xsd">
+    <LookupVersionResponse>
+        <FromAgencyId>
+            <UniqueAgencyId>
+                <Scheme>http://www.oclc.org/ncip/schemes/agencyids.scm</Scheme>
+                <Value>UofC</Value>
+            </UniqueAgencyId>
+        </FromAgencyId>
+        <ToAgencyId>
+            <UniqueAgencyId>
+                <Scheme>http://www.oclc.org/ncip/schemes/agencyids.scm</Scheme>
+                <Value>UofC</Value>
+            </UniqueAgencyId>
+        </ToAgencyId>
+        <VersionSupported>http://www.niso.org/2008/ncip</VersionSupported>
+        <VersionSupported>http://www.niso.org/2001/ncip</VersionSupported>
+    </LookupVersionResponse>
+</NCIPVersionMessage>

@@ -1,0 +1,25 @@
+language: java
+
+jdk: openjdk8
+
+# SonarCloud integration is not available yet; once the SonarCloud application is installed for the organization, uncomment these lines and add the appropriate values.
+#addons:
+#  sonarcloud:
+#    organization: "organization_key" # find the organization key on SonarCloud
+#    token: $SONAR_TOKEN # create a User Authentication Token on SonarCloud, then define SONAR_TOKEN in Travis Repository Settings
+#script:
+# verify the projectKey value on the project home page in SonarCloud
+#  - mvn clean verify sonar:sonar -Pjacoco-coverage -Dsonar.projectKey=oclc_developer_network_circill_toolkit
+#git:
+#  depth: false
+
+# Deployment options pending public release of the project.
+# deploy:
+#   provider: releases
+#   api_key:
+#     secure: "key"
+#   file: "filename"
+#   skip_cleanup: true
+#   on:
+#     tags:
+#       true

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dummy-webapp</artifactId>
+    <version>0.25-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>Circ/ILL Toolkit: Dummy: Responder Webapp</name>
+    <description>Circ/ILL Toolkit: Dummy Responder</description>
+
+    <parent>
+        <groupId>org.oclc.circill.toolkit</groupId>
+        <artifactId>dummy-parent</artifactId>
+        <version>0.25-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <jacoco.coverage.minimum>0.99</jacoco.coverage.minimum>
+    </properties>
+
+    <dependencies>
+
+        <!-- >>>>> These dependencies are sorted by artifactId <<<<< -->
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-iso18626</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-jar</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-ncipv2_02</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-ncip</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-iso18626</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dummy-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>initiator</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-base</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-iso18626</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ncip</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ncip-common</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- >>>>> These dependencies are sorted by groupId / artifactId <<<<< -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.cargo</groupId>
+            <artifactId>cargo-core-uberjar</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.groovy</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- TODO: Figure out how to run the ClientTestSuite w/o running the ClientTests directly. -->
+                    <excludes>
+                        <exclude>**/*TestSuite.java</exclude>
+                        <exclude>**/*Test.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>true</failOnWarning>
+                            <usedDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.slf4j:slf4j-log4j12</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.springframework:spring-web</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.springframework:spring-webmvc</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:dummy-web</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-iso18626</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-ncipv2_02</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-jar</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.hamcrest:hamcrest-core</ignoredUnusedDeclaredDependencies>
+                            </usedDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>examples</artifactId>
+    <packaging>jar</packaging>
+    <version>0.25-SNAPSHOT</version>
+    <name>Circ/ILL Toolkit: Examples</name>
+    <description>Circ/ILL Toolkit: Examples</description>
+
+    <parent>
+        <groupId>org.oclc.circill.toolkit</groupId>
+        <artifactId>root</artifactId>
+        <version>0.25-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <jacoco.coverage.minimum>0.00</jacoco.coverage.minimum>
+    </properties>
+
+    <dependencies>
+
+        <!-- >>>>> These dependencies are sorted by artifactId <<<<< -->
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-ncip</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-iso18626</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>binding-ncipv2_02</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common-iso18626</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>initiator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-iso18626</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ncip</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>service-ncip-common</artifactId>
+        </dependency>
+
+        <!-- >>>>> These dependencies are sorted by groupId / artifactId <<<<< -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- This configuration, of a new JVM for each test class, is required because
+                         the TestExampleItemIdentifierType tests rely on a feature of the SchemeValuePair
+                         class which loads the ExampleItemIdentifierType values when the class is loaded.
+                         If the Fail test executes in a JVM that previously executed the Pass test,
+                         the ExampleItemIdentifierType class will already have been loaded and the
+                         Fail test will not fail as expected. -->
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>true</failOnWarning>
+                            <usedDependencies>
+                                <ignoredUnusedDeclaredDependencies>javax.servlet:servlet-api</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.hamcrest:hamcrest-library</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-ncipv2_02</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:common-iso18626</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:binding-iso18626</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.slf4j:slf4j-log4j12</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.springframework:spring-core</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.springframework:spring-beans</ignoredUnusedDeclaredDependencies>
+                            </usedDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

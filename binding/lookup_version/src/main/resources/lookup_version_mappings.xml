@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://dozer.sourceforge.net"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+    <configuration>
+        <custom-converters>
+
+            <converter type="org.oclc.circill.toolkit.binding.jaxb.dozer.StringConverter">
+                <class-a>java.lang.String</class-a>
+                <class-b>javax.xml.bind.JAXBElement</class-b>
+            </converter>
+            <!-- Any class which in the service package is a sub-class of SchemeValuePair must use a sub-class of
+                 BaseSchemeValuePairConverter to map to & from the JAXB SchemeValuePair class, and
+                 BaseJAXBElementSchemeValuePairConverter to map to & from the JAXBElement class. JAXBElements are used for fields
+                 of a JAXB class that requires the getContent method to access its fields; SchemeValuePair is used in the
+                 remaining JAXB classes.
+            -->
+        </custom-converters>
+    </configuration>
+
+    <!-- Handle mapping objects with fields that require non-default behavior:
+         1) the field is repeatable in JAXB object so in the service object its name is plural (use field names and
+         a hint for the type of the objects in the JAXB object's List).
+         2) the field is an ...ElementType in the JAXB object and a boolean flag in the service object (use the
+         element-specific sub-class of the BaseSchemeValuePairToBooleanConverter custom converter).
+         3) the field is an empty element in the JAXB object and a boolean flag in the service object (use the
+          EmptyFieldConverter custom converter).
+         4) the field is an extension (use the binding sub-module's sub-class of BaseExtensionConverter custom converter).
+    -->
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncipversion.LookupVersionInitiationData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.lookupversion.jaxb.elements.LookupVersion</class-b>
+        <field>
+            <a>initiationHeader.toAgencyId</a>
+            <b>toAgencyId</b>
+        </field>
+        <field>
+            <a>initiationHeader.fromAgencyId</a>
+            <b>fromAgencyId</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncipversion.LookupVersionResponseData</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.lookupversion.jaxb.elements.LookupVersionResponse</class-b>
+        <field>
+            <a>responseHeader.toAgencyId</a>
+            <b>toAgencyId</b>
+        </field>
+        <field>
+            <a>responseHeader.fromAgencyId</a>
+            <b>fromAgencyId</b>
+        </field>
+        <field>
+            <a>versionSupporteds</a>
+            <b>versionSupported</b>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field>
+            <a>serviceSupporteds</a>
+            <b>serviceSupported</b>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.common.FromAgencyId</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.lookupversion.jaxb.elements.FromAgencyId</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.lookupversion.jaxb.dozer.AgencyIdConverter">
+            <a>agencyId</a>
+            <b>uniqueAgencyId</b>
+        </field>
+    </mapping>
+
+    <mapping map-null="false">
+        <class-a>org.oclc.circill.toolkit.service.ncip.common.ToAgencyId</class-a>
+        <class-b>org.oclc.circill.toolkit.binding.lookupversion.jaxb.elements.ToAgencyId</class-b>
+        <field custom-converter="org.oclc.circill.toolkit.binding.lookupversion.jaxb.dozer.AgencyIdConverter">
+            <a>agencyId</a>
+            <b>uniqueAgencyId</b>
+        </field>
+    </mapping>
+
+</mappings>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:ISO18626Message
+        xmlns:ns1="http://illtransactions.org/2013/iso18626" ns1:version="v1_2_2017">
+    <ns1:supplyingAgencyMessage>
+        <ns1:header>
+            <ns1:supplyingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>US-ocolcwe</ns1:agencyIdValue>
+            </ns1:supplyingAgencyId>
+            <ns1:requestingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>US-ocolcm</ns1:agencyIdValue>
+            </ns1:requestingAgencyId>
+            <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
+            <ns1:timestamp>2018-02-08T08:34:54Z</ns1:timestamp>
+            <ns1:requestingAgencyRequestId>Requesting-ID-1234</ns1:requestingAgencyRequestId>
+            <ns1:supplyingAgencyRequestId>Supplying-ID-5678</ns1:supplyingAgencyRequestId>
+        </ns1:header>
+        <ns1:messageInfo>
+            <ns1:reasonForMessage>Notification</ns1:reasonForMessage>
+            <ns1:note>Request can not be Received if it is already in Returned status.</ns1:note>
+        </ns1:messageInfo>
+        <ns1:statusInfo>
+            <ns1:status>LoanCompleted</ns1:status>
+            <ns1:expectedDeliveryDate>2018-03-12T12:00:00Z</ns1:expectedDeliveryDate>
+            <ns1:dueDate>2018-03-14T12:00:00Z</ns1:dueDate>
+            <ns1:lastChange>2018-02-28T14:28:25Z</ns1:lastChange>
+        </ns1:statusInfo>
+    </ns1:supplyingAgencyMessage>
+</ns1:ISO18626Message>

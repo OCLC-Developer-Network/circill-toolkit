@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ns1:NCIPMessage xmlns:ns1="http://www.niso.org/2008/ncip"
+                 xmlns:ns3="http://www.oclc.org/ncip/usernote/2012"
+                 ns1:version="http://www.niso.org/schemas/ncip/v2_02/imp1/xsd/ncip_v2_02.xsd">
+    <ns1:UpdateRequestItem>
+        <ns1:InitiationHeader>
+            <ns1:FromAgencyId>
+                <ns1:AgencyId ns1:Scheme="http://oclc.org/ncip/schemes/agencyid.scm">91475</ns1:AgencyId>
+            </ns1:FromAgencyId>
+            <ns1:ToAgencyId>
+                <ns1:AgencyId>91475</ns1:AgencyId>
+            </ns1:ToAgencyId>
+            <ns1:ApplicationProfileType ns1:Scheme="http://worldcat.org/ncip/schemes/v2/extensions/applicationprofiletype.scm">Version 2011</ns1:ApplicationProfileType>
+        </ns1:InitiationHeader>
+        <ns1:RequestId>
+            <ns1:AgencyId>91475</ns1:AgencyId>
+            <ns1:RequestIdentifierValue>12039123</ns1:RequestIdentifierValue>
+        </ns1:RequestId>
+        <ns1:DeleteRequestFields>
+            <ns1:RequestScopeType ns1:Scheme="http://www.niso.org/ncip/v1_0/imp1/schemes/requestscopetype/requestscopetype.scm">Bibliographic Item</ns1:RequestScopeType>
+            <ns1:PickupLocation>125569</ns1:PickupLocation>
+        </ns1:DeleteRequestFields>
+        <ns1:AddRequestFields>
+            <ns1:RequestScopeType ns1:Scheme="http://worldcat.org/ncip/schemes/v2/extensions/v1_1/requestscopetype.scm">Special Request</ns1:RequestScopeType>
+            <ns1:PickupLocation>125572</ns1:PickupLocation>
+            <ns1:Ext>
+                <ns3:UserNote>I want the errata for volume 7.</ns3:UserNote>
+            </ns1:Ext>
+        </ns1:AddRequestFields>
+    </ns1:UpdateRequestItem>
+</ns1:NCIPMessage>

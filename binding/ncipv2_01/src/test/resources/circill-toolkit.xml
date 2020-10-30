@@ -1,0 +1,252 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="protocolHelper" class="org.oclc.circill.toolkit.common.ncip.NCIPProtocolHelper"/>
+
+    <bean id="mapper" class="org.dozer.DozerBeanMapper">
+        <property name="mappingFiles" value="ncipv2_01_mappings.xml"/>
+        <property name="customConverters">
+            <list>
+                <ref bean="contentMappingFactory"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="contentMappingFactory" class="org.oclc.circill.toolkit.binding.ncipv2_01.jaxb.dozer.NCIPv2_01ContentMappingFactory">
+        <property name="protocolHelper" ref="protocolHelper"/>
+    </bean>
+
+    <bean id="marshallerFactory" class="org.oclc.circill.toolkit.binding.jaxb.JAXBMarshallerFactory">
+        <constructor-arg name="schemaURLsToPackageMap">
+            <map>
+                <entry key="ncip_v2_01.xsd" value="org.oclc.circill.toolkit.binding.ncipv2_01.jaxb.elements"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="statisticsBean" class="org.oclc.circill.toolkit.common.base.StatisticsBean"/>
+
+    <bean id="translator" class="org.oclc.circill.toolkit.binding.ncipv2_01.jaxb.dozer.NCIPv2_01JAXBDozerTranslator">
+        <property name="logMessages" value="true"/>
+        <property name="mapper" ref="mapper"/>
+        <property name="marshallerFactory" ref="marshallerFactory"/>
+        <property name="messagesLoggingLevel" value="DEBUG"/>
+        <property name="prettyPrintXML" value="true"/>
+        <property name="protocolHelper" ref="protocolHelper"/>
+        <property name="statisticsBean" ref="statisticsBean"/>
+    </bean>
+
+    <bean id="serviceContextFactory" class="org.oclc.circill.toolkit.common.ncip.NCIPServiceContextFactory">
+        <constructor-arg name="serviceContextBeanName" value="serviceContext"/>
+    </bean>
+
+    <bean id="serviceContext" scope="prototype" class="org.oclc.circill.toolkit.common.ncip.NCIPServiceContext">
+        <property name="version" value="http://www.niso.org/schemas/ncip/v2_01/imp1/xsd/ncip_v2_01.xsd"/>
+        <property name="requireApplicationProfileType" value="false"/>
+        <!-- applicationProfileTypes null -->
+        <property name="namespaceURIs" value="http://www.niso.org/2008/ncip"/>
+        <property name="defaultNamespace" value="http://www.niso.org/2008/ncip"/>
+        <property name="addDefaultNamespace" value="false"/>
+        <property name="schemaURLs" value="ncip_v2_01.xsd"/>
+        <property name="validateMessagesAgainstSchema" value="true"/>
+        <!-- Does not work as of Nov 20 2019.
+        <property name="parserFeatures">
+            <map>
+                <entry key="http://javax.xml.XMLConstants/feature/secure-processing" value="false"/>
+            </map>
+        </property>
+        -->
+    </bean>
+
+    <bean id="loadSchemeValueClasses" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod">
+            <value>org.oclc.circill.toolkit.service.base.SchemeValuePair.loadSchemeValueClasses</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AcceptItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1GeneralProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LocationType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemUseRestrictionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1BibliographicItemIdentifierCode</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1BibliographicLevel</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ComponentIdentifierType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1Language</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ElectronicDataFormatType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1MediumType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CirculationStatus</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemDescriptionLevel</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1PhysicalConditionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1SecurityMarker</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestScopeType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestStatusType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1PhysicalAddressType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UnstructuredAddressType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CurrencyCode</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ElectronicAddressType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UserAddressRoleType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1BibliographicRecordIdentifierCode</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AuthenticationDataFormatType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AuthenticationInputType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestedActionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemIdentifierType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AgencyAddressRoleType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1AgencyElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CancelRequestItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CheckInItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1CheckOutItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1FiscalActionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1FiscalTransactionType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1ItemElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LookupItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LookupRequestProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1LookupUserProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1MessagingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1OrganizationNameType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1PaymentMethodType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RenewItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1RequestElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UpdateRequestItemProcessingError</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UserElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.Version1UserIdentifierType</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="allowAnyValue" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod">
+            <value>org.oclc.circill.toolkit.service.base.SchemeValuePair.allowAnyValue</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>org.oclc.circill.toolkit.service.ncip.common.AgencyId</value>
+                <value>org.oclc.circill.toolkit.service.ncip.common.FromSystemId</value>
+                <value>org.oclc.circill.toolkit.service.ncip.common.ToSystemId</value>
+                <value>org.oclc.circill.toolkit.service.ncip.PickupLocation</value>
+                <value>org.oclc.circill.toolkit.service.ncip.common.ApplicationProfileType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.RequestIdentifierType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.AuthenticationDataFormatType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.AuthenticationInputType</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="allowNullScheme" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod">
+            <value>org.oclc.circill.toolkit.service.base.SchemeValuePair.allowNullScheme</value>
+        </property>
+        <property name="arguments">
+            <list>
+                <value>org.oclc.circill.toolkit.service.ncip.AgencyElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.ItemElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.RequestElementType</value>
+                <value>org.oclc.circill.toolkit.service.ncip.UserElementType</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--
+        Due to an editing mistake in Version 2.0 of the NCIP standard, all of the Schemes published with
+        version 1 were presented with *different* URIs ("v1_0" was changed to "v2_0"). The following allows
+        the Toolkit to recognize all of the Scheme URIs published in version 2 of the Standard.
+    -->
+    <bean id="setSchemeURIAliases" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.oclc.circill.toolkit.service.base.SchemeValuePair.setSchemeURIAliasesFromFields"/>
+        <property name="arguments">
+            <map>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1AcceptItemProcessingError.VERSION_1_ACCEPT_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/acceptitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1AgencyAddressRoleType.VERSION_1_AGENCY_ADDRESS_ROLE_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/agencyaddressroletype/agencyaddressroletype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1AgencyElementType.VERSION_1_AGENCY_ELEMENT_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/schemes/agencyelementtype/agencyelementtype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1AuthenticationInputType.VERSION_1_AUTHENTICATION_INPUT_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/authenticationinputtype/authenticationinputtype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1BibliographicItemIdentifierCode.VERSION_1_BIBLIOGRAPHIC_ITEM_IDENTIFIER_CODE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/bibliographicitemidentifiercode/bibliographicitemidentifiercode.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1BibliographicLevel.VERSION_1_BIBLIOGRAPHIC_LEVEL"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/bibliographiclevel/bibliographiclevel.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1BibliographicRecordIdentifierCode.VERSION_1_BIBLIOGRAPHIC_RECORD_IDENTIFIER_CODE"
+                       value="http://www.niso.org/ncip/v2_0/schemes/bibliographicrecordidentifiercode/bibliographicrecordidentifiercode.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1BibliographicRecordIdentifierCode.VERSION_1_BIBLIOGRAPHIC_RECORD_IDENTIFIER_CODE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/bibliographicrecordidentifiercode/bibliographicrecordidentifiercode.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1CancelRequestItemProcessingError.VERSION_1_CANCEL_REQUEST_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/cancelrequestitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1CheckInItemProcessingError.VERSION_1_CHECK_IN_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/checkinitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1CheckOutItemProcessingError.VERSION_1_CHECK_OUT_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/checkoutitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1CirculationStatus.VERSION_1_CIRCULATION_STATUS"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/circulationstatus/circulationstatus.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1ComponentIdentifierType.VERSION_1_COMPONENT_IDENTIFIER_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/componentidentifiertype/componentidentifiertype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1FiscalActionType.VERSION_1_FISCAL_ACTION_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/fiscalactiontype/fiscalactiontype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1FiscalTransactionType.VERSION_1_FISCAL_TRANSACTION_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/fiscaltransactiontype/fiscaltransactiontype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1GeneralProcessingError.VERSION_1_GENERAL_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/generalprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1ItemDescriptionLevel.VERSION_1_ITEM_DESCRIPTION_LEVEL"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/itemdescriptionlevel/itemdescriptionlevel.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1ItemElementType.VERSION_1_ITEM_ELEMENT_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/schemes/itemelementtype/itemelementtype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1ItemIdentifierType.VERSION_1_ITEM_IDENTIFIER_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/visibleitemidentifiertype/visibleitemidentifiertype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1ItemUseRestrictionType.VERSION_1_ITEM_USE_RESTRICTION_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/itemuserestrictiontype/itemuserestrictiontype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1LocationType.VERSION_1_LOCATION_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/locationtype/locationtype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1LookupItemProcessingError.VERSION_1_LOOKUP_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/lookupitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1LookupUserProcessingError.VERSION_1_LOOKUP_USER_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/lookupuserprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1MediumType.VERSION_1_MEDIUM_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/mediumtype/mediumtype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1MessagingError.VERSION_1_MESSAGING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/messagingerrortype/messagingerrortype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1OrganizationNameType.VERSION_1_ORGANIZATION_NAME_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/organizationnametype/organizationnametype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1PaymentMethodType.VERSION_1_PAYMENT_METHOD_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/paymentmethodtype/paymentmethodtype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1PhysicalAddressType.VERSION_1_PHYSICAL_ADDRESS_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/physicaladdresstype/physicaladdresstype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1PhysicalConditionType.VERSION_1_PHYSICAL_CONDITION_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/physicalconditiontype/physicalconditiontype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RenewItemProcessingError.VERSION_1_RENEW_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/renewitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestElementType.VERSION_1_REQUEST_ELEMENT_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/schemes/requestelementtype/requestelementtype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestItemProcessingError.VERSION_1_REQUEST_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/requestitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestScopeType.VERSION_1_REQUEST_SCOPE_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/requestscopetype/requestscopetype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestStatusType.VERSION_1_REQUEST_STATUS_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/schemes/requeststatustype/requeststatustype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestStatusType.VERSION_1_REQUEST_STATUS_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/requeststatustype/requeststatustype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestType.VERSION_1_REQUEST_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/schemes/requesttype/requesttype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestType.VERSION_1_REQUEST_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/requesttype/requesttype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1RequestedActionType.VERSION_1_REQUESTED_ACTION_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/requestedactiontype/requestedactiontype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1SecurityMarker.VERSION_1_SECURITY_MARKER"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/securitymarker/securitymarker.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1UnstructuredAddressType.VERSION_1_UNSTRUCTURED_ADDRESS_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/unstructuredaddresstype/unstructuredaddresstype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1UserAddressRoleType.VERSION_1_USER_ADDRESS_ROLE_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/imp1/schemes/useraddressroletype/useraddressroletype.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1UpdateRequestItemProcessingError.VERSION_1_UPDATE_REQUEST_ITEM_PROCESSING_ERROR"
+                       value="http://www.niso.org/ncip/v2_0/schemes/processingerrortype/updaterequestitemprocessingerror.scm"/>
+                <entry key="org.oclc.circill.toolkit.service.ncip.Version1UserElementType.VERSION_1_USER_ELEMENT_TYPE"
+                       value="http://www.niso.org/ncip/v2_0/schemes/userelementtype/userelementtype.scm"/>
+            </map>
+        </property>
+    </bean>
+</beans>
