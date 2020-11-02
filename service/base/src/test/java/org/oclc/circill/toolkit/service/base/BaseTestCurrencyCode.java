@@ -63,7 +63,7 @@ public class BaseTestCurrencyCode {
             TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA = "^(MRU|STN|UYW|VES|BYN)$";
         } else {
             JAVA_CURRENCIES_NOT_IN_SERVICE_CLASS = "^$";
-            TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA = "^(MRU|STN|UYW|VES)$";
+            TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA = "^(UYW)$";
         }
     }
 
