@@ -45,9 +45,7 @@ public class ClientTestSuite {
         LOG.debug("Entered DummyResponderTestSuite.beforeClass");
         try {
             LOG.info("***** Installing container.");
-            final Installer installer = new ZipURLInstaller(
-                // TODO: Need to make this project-relative.
-                new URL("file:////Users/bodfishj/Development/CircILL-Toolkit/dummy/webapp/src/test/resources/tomcat-7.0.68.zip"));
+            final Installer installer = new ZipURLInstaller(new URL("file:./tomcat-7.0.68.zip"));
             installer.install();
 
             final LocalConfiguration configuration = (LocalConfiguration) new DefaultConfigurationFactory()
