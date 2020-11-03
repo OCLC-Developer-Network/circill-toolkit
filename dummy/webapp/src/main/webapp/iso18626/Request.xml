@@ -63,7 +63,7 @@
                     <ns1:locality>Town</ns1:locality>
                     <ns1:postalCode>12345</ns1:postalCode>
                     <ns1:region ns1:scheme="http://purl.org/dc/terms/ISO3166-2">US-OH</ns1:region>
-                    <ns1:country ns1:scheme="http://purl.org/dc/terms/ISO3166-1">US</ns1:country>
+                    <ns1:country ns1:scheme="https://www.iso.org/iso-3166-country-codes.html">US</ns1:country>
                 </ns1:physicalAddress>
             </ns1:address>
         </ns1:requestedDeliveryInfo>
@@ -89,7 +89,7 @@
                     <ns1:locality>OtherTown</ns1:locality>
                     <ns1:postalCode>12354</ns1:postalCode>
                     <ns1:region ns1:scheme="http://purl.org/dc/terms/ISO3166-2">US-OH</ns1:region>
-                    <ns1:country ns1:scheme="http://purl.org/dc/terms/ISO3166-1">US</ns1:country>
+                    <ns1:country ns1:scheme="https://www.iso.org/iso-3166-country-codes.html">US</ns1:country>
                 </ns1:physicalAddress>
             </ns1:address>
         </ns1:patronInfo>
@@ -108,7 +108,7 @@
                     <ns1:locality>Town</ns1:locality>
                     <ns1:postalCode>12356</ns1:postalCode>
                     <ns1:region ns1:scheme="http://purl.org/dc/terms/ISO3166-2">US-OH</ns1:region>
-                    <ns1:country ns1:scheme="http://purl.org/dc/terms/ISO3166-1">US</ns1:country>
+                    <ns1:country ns1:scheme="https://www.iso.org/iso-3166-country-codes.html">US</ns1:country>
                 </ns1:physicalAddress>
             </ns1:address>
 
