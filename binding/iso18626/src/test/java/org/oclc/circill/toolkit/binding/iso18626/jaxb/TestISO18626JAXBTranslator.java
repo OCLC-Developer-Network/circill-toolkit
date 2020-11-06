@@ -9,6 +9,7 @@
 package org.oclc.circill.toolkit.binding.iso18626.jaxb;
 
 import org.oclc.circill.toolkit.binding.BaseTestTranslator;
+import org.oclc.circill.toolkit.binding.iso18626.jaxb.mapstruct.ISO18626JAXBMapStructTranslator;
 import org.oclc.circill.toolkit.service.base.ToolkitException;
 import org.oclc.circill.toolkit.service.iso18626.ISO18626ConfirmationData;
 import org.oclc.circill.toolkit.service.iso18626.ISO18626Message;
@@ -19,7 +20,7 @@ import java.io.FileNotFoundException;
 import org.junit.Test;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * Integraion test for {@link ISO18626JAXBMapStructTranslator}.
  */
 public class TestISO18626JAXBTranslator
     extends BaseTestTranslator<ISO18626Message<ISO18626RequestData, ISO18626ConfirmationData>, ISO18626RequestData, ISO18626ConfirmationData> {

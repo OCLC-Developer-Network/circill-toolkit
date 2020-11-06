@@ -11,7 +11,7 @@ package org.oclc.circill.toolkit.common.base;
 import org.oclc.circill.toolkit.service.base.ServiceResponseData;
 
 /**
- * Created by bodfishj on 11/14/17.
+ * Subclass of {@link ServiceResponseData} for tests.
  */
 public class FakeResponseData implements ServiceResponseData {
 }

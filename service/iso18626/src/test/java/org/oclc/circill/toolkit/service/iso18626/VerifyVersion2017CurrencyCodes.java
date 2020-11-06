@@ -8,24 +8,16 @@
 
 package org.oclc.circill.toolkit.service.iso18626;
 
-import org.oclc.circill.toolkit.service.base.BaseTestCurrencyCode;
+import org.oclc.circill.toolkit.service.base.BaseVerifyCurrencyCodes;
 import org.oclc.circill.toolkit.service.base.ToolkitInternalException;
 
-import org.junit.Test;
-
 /**
- * Unit Test for Version1CurrencyCode.
+ * Verify {@link Version2017CurrencyCode}.
+ * {@inheritDoc}
  */
-public class TestVersion2017CurrencyCode extends BaseTestCurrencyCode {
-
-    @Test
-    public void test_ServiceClassCodesAreInJava() throws IllegalAccessException {
+public class VerifyVersion2017CurrencyCodes extends BaseVerifyCurrencyCodes {
+    public static void main(final String[] args) throws ToolkitInternalException {
         validateServiceClassCodesAreInJava(Version2017CurrencyCode.class);
-    }
-
-    @Test
-    public void test_JavaCodesAreInServiceClass() throws ToolkitInternalException {
         validateJavaCodesAreInServiceClass(Version2017CurrencyCode.class, Version2017CurrencyCode.VERSION_2017_CURRENCY_CODE_SCHEME_URI);
     }
-
 }

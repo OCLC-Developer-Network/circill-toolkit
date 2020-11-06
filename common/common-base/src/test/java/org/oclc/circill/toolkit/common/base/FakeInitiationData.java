@@ -11,7 +11,7 @@ package org.oclc.circill.toolkit.common.base;
 import org.oclc.circill.toolkit.service.base.ServiceInitiationData;
 
 /**
- * Created by bodfishj on 11/14/17.
+ * Subclass of {@link ServiceInitiationData} for tests.
  */
 public class FakeInitiationData implements ServiceInitiationData {
 }

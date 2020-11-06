@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * If the Supplier asks the Requester to return the item to another address.
  */
 public class ReturnInfo {
 

@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 /**
- * Test the ISO 18626 Request message.^
+ * Integration tests for ISO 18626's Request message.
  */
 public class ISO18626RequestClientTest extends ISO18626ClientTestBase {
 

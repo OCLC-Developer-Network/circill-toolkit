@@ -15,12 +15,17 @@ import org.oclc.circill.toolkit.service.ncip.MediumType;
 import org.apache.log4j.Logger;
 
 /**
- * Created by bodfishj on 11/21/14.
+ * {@link MediumType} for OCLC WorldCat Local.
  */
 public class WCLv1_1MediumType extends MediumType {
 
     private static final Logger LOG = Logger.getLogger(WCLv1_1MediumType.class);
 
+    /**
+     * Construct an instance with the provided scheme and value.
+     * @param scheme the Scheme URI
+     * @param value the value
+     */
     public WCLv1_1MediumType(final String scheme, final String value) {
         super(scheme, value);
     }
@@ -38,11 +43,17 @@ public class WCLv1_1MediumType extends MediumType {
         return (WCLv1_1MediumType) find(scheme, value, WCLv1_1MediumType.class);
     }
 
+    /**
+     * The Scheme URI.
+     */
     public static final String WCL_V1_1_MEDIUM_TYPE = "http://worldcat.org/ncip/schemes/v2/extensions/v1_1/mediumtype.scm";
 
     /** Archival Material. */
     public static final WCLv1_1MediumType BOOK_PRINTBOOK = new WCLv1_1MediumType(WCL_V1_1_MEDIUM_TYPE, "Book PrintBook");
 
+    /**
+     * Load all instances.
+     */
     public static void loadAll() {
         LOG.debug("Loading WCLv1_1MediumType.");
         // Do nothing - merely invoking this method forces the creation of the instances defined above.

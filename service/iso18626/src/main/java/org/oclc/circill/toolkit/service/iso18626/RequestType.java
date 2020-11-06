@@ -9,7 +9,8 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Type of request (new, retry or reminder).
+ * If no request type is specified, the default is "new".
  */
 @SuppressWarnings("java:S115")
 public enum RequestType { New, Retry, Reminder; }

@@ -27,7 +27,7 @@ import java.util.Collections;
 import org.apache.log4j.Logger;
 
 /**
- * Created by bodfishj on 11/17/17.
+ * {@link ProtocolHelper} for NCIP Version service.
  */
 public class NCIPVersionProtocolHelper
     implements ProtocolHelper<NCIPVersionMessage<LookupVersionInitiationData, LookupVersionResponseData>, LookupVersionInitiationData, LookupVersionResponseData> {

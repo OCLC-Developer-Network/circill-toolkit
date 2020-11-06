@@ -31,7 +31,10 @@ import org.junit.Rule;
 import org.junit.rules.ErrorCollector;
 
 /**
- * Created by bodfishj on 4/16/18.
+ * Base class for tests that verify all subclasses of {@link Service} conform to API design rules, which are:
+ * 1) Exceptions thrown by public methods must be subclasses of {@link ToolkitException}.
+ * 2) Subclasses of {@link Service} must specify that they can throw {@link ServiceException} and {@link ValidationException}, but no others.
+ * Subclasses (for particular protocols) may add other "allowed" exceptions to the above rules (see e.g. the ISO 18626 package's subclass).
  */
 public abstract class BaseTestServiceAPIRules {
 

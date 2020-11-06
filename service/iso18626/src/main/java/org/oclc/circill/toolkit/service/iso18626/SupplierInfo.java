@@ -13,8 +13,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/7/18.
- * Modified by smithde on 2018-02-14
+ * When a request is sent to a brokering institution, the requesting library may provide a list of potential suppliers (in preference order)
+ * intended primarily for requests sent to brokers, but may be used in other circumstances as well.
  */
 public class SupplierInfo {
 

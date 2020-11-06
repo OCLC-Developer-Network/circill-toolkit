@@ -11,7 +11,7 @@ package org.oclc.circill.toolkit.service.iso18626;
 import org.oclc.circill.toolkit.service.base.ServiceInitiationData;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * ISO 18626 message.
  */
 public interface ISO18626RequestData extends ServiceInitiationData, ISO18626Data {
 

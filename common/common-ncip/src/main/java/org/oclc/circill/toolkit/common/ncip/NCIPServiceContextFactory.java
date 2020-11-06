@@ -20,7 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- * Created by bodfishj on 2/21/18.
+ * {@link ServiceContextFactory} for NCIP.
  */
 public class NCIPServiceContextFactory
     implements ServiceContextFactory<NCIPMessage<NCIPInitiationData, NCIPResponseData>, NCIPInitiationData, NCIPResponseData>, ApplicationContextAware {

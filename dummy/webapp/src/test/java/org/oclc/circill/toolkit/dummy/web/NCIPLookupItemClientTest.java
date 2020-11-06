@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 /**
- * Created by bodfishj on 10/18/17.
+ * Integration tests for NCIP's LookupItem service.
  */
 public class NCIPLookupItemClientTest extends NCIPClientTestBase {
 

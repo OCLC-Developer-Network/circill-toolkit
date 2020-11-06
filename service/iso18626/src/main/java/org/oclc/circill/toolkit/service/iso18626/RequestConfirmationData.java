@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Request confirmation message.
  */
 public class RequestConfirmationData implements ISO18626ConfirmationData {
     /**

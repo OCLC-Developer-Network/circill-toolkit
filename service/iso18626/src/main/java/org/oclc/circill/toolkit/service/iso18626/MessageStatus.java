@@ -9,6 +9,6 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * The status of the message exchange.
  */
 public enum MessageStatus {OK, ERROR}

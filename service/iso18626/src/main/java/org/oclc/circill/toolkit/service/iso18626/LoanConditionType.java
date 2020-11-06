@@ -13,7 +13,7 @@ import org.oclc.circill.toolkit.service.base.SchemeValuePair;
 import org.oclc.circill.toolkit.service.base.ToolkitInternalException;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * Conditions for use of the item.
  */
 public class LoanConditionType extends SchemeValuePair {
 

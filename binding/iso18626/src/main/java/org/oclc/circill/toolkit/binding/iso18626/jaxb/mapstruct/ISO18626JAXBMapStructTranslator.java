@@ -15,7 +15,7 @@ import org.oclc.circill.toolkit.service.iso18626.ISO18626Message;
 import org.oclc.circill.toolkit.service.iso18626.ISO18626RequestData;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * MapStruct translator for ISO18626 messages.
  */
 public class ISO18626JAXBMapStructTranslator extends
     BaseJAXBMapStructTranslator<ISO18626Message<ISO18626RequestData, ISO18626ConfirmationData>, ISO18626RequestData, ISO18626ConfirmationData,

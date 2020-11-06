@@ -338,9 +338,9 @@ public final class DummyDatabase {
         }
     }
 
+    protected static final Map<String, ItemInfo> ITEM_INFOS = new HashMap<>();
     protected static class ItemInfo {
 
-        protected static final Map<String, ItemInfo> ITEM_INFOS = new HashMap<>();
         protected static Map<String, BibInfo> bibByItemBarcode = new HashMap<>();
         protected static Map<String, HoldingInfo> holdingByItemBarcode = new HashMap<>();
         protected static final Map<String, List<ItemInfo>> CHARGED_ITEMS_BY_USER_NO = new HashMap<>();
@@ -400,7 +400,6 @@ public final class DummyDatabase {
             holdingInfo.addItem(this);
             this.callNo = callNo;
             this.copyNo = copyNo;
-            ITEM_INFOS.put(barcode, this);
         }
 
         public void checkout(final String userNo, final ZonedDateTime dateDue) {
@@ -514,9 +513,13 @@ public final class DummyDatabase {
             final HoldingInfo holdingInfo123_1 = new HoldingInfo("bib123-1", bib123, "Main", "2 copies");
 
             final ItemInfo itemInfo123_1_1 = new ItemInfo("25556192919132", holdingInfo123_1, "813.52 St34yV c.1", "copy 1");
+            ITEM_INFOS.put("25556192919132", itemInfo123_1_1);
+
             itemInfo123_1_1.checkout(userABC.userNo, TODAY_PLUS_20_DAYS);
 
             final ItemInfo itemInfo123_1_2 = new ItemInfo("25556192919198", holdingInfo123_1, "813.52 St34yV c.2", "copy 2");
+            ITEM_INFOS.put("25556192919198", itemInfo123_1_2);
+
             itemInfo123_1_2.checkout(userMeganRichards.userNo, TODAY_PLUS_20_DAYS);
 
             final BibInfo bib345 = new BibInfo("345", "The Mouse That Roared", "Rodent, Rodney", "Dog-eared Press, Chicago", "7th expanded", "1907", "eng", "765",
@@ -525,6 +528,8 @@ public final class DummyDatabase {
             final HoldingInfo holdingInfo345_1 = new HoldingInfo("bib345-1", bib345, "Law", "1 copy");
 
             final ItemInfo itemInfo345_1_1 = new ItemInfo("25556192919171", holdingInfo345_1, "813.52 St34yV c.1", "copy 1");
+            ITEM_INFOS.put("25556192919171", itemInfo345_1_1);
+
             itemInfo345_1_1.checkout(userMeganRichards.userNo, TODAY_PLUS_40_DAYS);
             itemInfo345_1_1.renew();
 
@@ -533,6 +538,8 @@ public final class DummyDatabase {
             final HoldingInfo holdingInfo567_1 = new HoldingInfo("bib567-1", bib567, "Main", "2 copies");
 
             final ItemInfo itemInfo567_1_1 = new ItemInfo("25556119105917", holdingInfo567_1, "113.52 St34yV c.1", "copy 1");
+            ITEM_INFOS.put("25556119105917", itemInfo567_1_1);
+
             itemInfo567_1_1.checkout(userABC.userNo, TODAY_PLUS_40_DAYS);
             itemInfo567_1_1.renew();
             final RequestInfo requestInfo567_1_1 = itemInfo567_1_1.placeOnHold("1239", userDEF.userNo, "Main Circ Desk");
@@ -541,6 +548,8 @@ public final class DummyDatabase {
             requestInfo567_1_1.fill();
 
             final ItemInfo itemInfo567_1_2 = new ItemInfo("25559171261518", holdingInfo567_1, "113.52 St34yV c.2", "copy 2");
+            ITEM_INFOS.put("25559171261518", itemInfo567_1_2);
+
             itemInfo567_1_2.checkout(userDEF.userNo, TODAY_PLUS_35_DAYS);
             final RequestInfo requestInfo567_1_2_7891 = itemInfo567_1_2.placeOnHold("7891", userABC.userNo, "Main Circ Desk");
             // Backdate the request
@@ -554,13 +563,16 @@ public final class DummyDatabase {
 
             final HoldingInfo holdingInfo789_1 = new HoldingInfo("bib789-1", bib789, "Econ", "");
 
-            new ItemInfo("25556819818614", holdingInfo789_1, "918.1 XH c.1", "copy 1");
+            final ItemInfo itemInfo_789_1_1 = new ItemInfo("25556819818614", holdingInfo789_1, "918.1 XH c.1", "copy 1");
+            ITEM_INFOS.put("25556819818614", itemInfo_789_1_1);
 
             final BibInfo bibFor981 = new BibInfo("981", "Impending Doom", "Daley", "Chicago Historical Society, Chicago", "1st", "2009", "eng", "2928187321", MediaTypeEnum.BOOK);
 
             final HoldingInfo holdingInfo981_1 = new HoldingInfo("bib981-1", bibFor981, "Main", "1 copy");
 
             final ItemInfo itemInfo981_1_1 = new ItemInfo("109283091823098123", holdingInfo981_1, "423.01 DBY c.1", "copy 1");
+            ITEM_INFOS.put("109283091823098123", itemInfo981_1_1);
+
             itemInfo981_1_1.checkout(userRenewRequestWillGoToPending.userNo, TODAY_PLUS_20_DAYS);
             itemInfo981_1_1.setRenewRequiresApproval();
 

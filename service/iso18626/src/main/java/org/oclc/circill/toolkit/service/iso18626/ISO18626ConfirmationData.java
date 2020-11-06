@@ -11,7 +11,7 @@ package org.oclc.circill.toolkit.service.iso18626;
 import org.oclc.circill.toolkit.service.base.ServiceResponseData;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * ISO 18626 confirmation message.
  */
 public interface ISO18626ConfirmationData extends ServiceResponseData, ISO18626Data {
 

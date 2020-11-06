@@ -9,7 +9,7 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Type of error; see 4.10 of ISO 18626:2017.
  */
 @SuppressWarnings("java:S115")
 public enum ErrorType {UnsupportedActionType, UnsupportedReasonForMessageType, UnrecognisedDataElement, UnrecognisedDataValue, BadlyFormedMessage}

@@ -52,18 +52,6 @@ import com.google.code.beanmatchers.ValueGenerator;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-// Issues with BeanMatchers:
-// 1) It requires a true bean, specifically a no-args constructor. The Toolkit's SchemeValuePair doesn't provide this, and BeanMatchers doesn't seem to offer a way around it.
-// 2) If you comment out the ValidBeanConstructor matcher, the ValidGettersAndSetters matcher seems to require a no-arg ctor also, so that fails.
-// 3) If you add a no-arg ctor to a SVP-derived class, you won't get setters because SVP classes are meant to be immutable.
-// 4) Some of the service classes (e.g. BibliographicDescription) must support both indexed and non-indexed getters (e.g. getBibliographicItemId() & getBibliographicItemIds(int)
-// and BeanMatcher doesn't seem to expect the Toolkit's use of plural ('s' suffix) property names.
-//    This causes a NullPointerException in ConcurrentHashMap when this test is run because it doesn't check that the property name it derives from the getter or setter actually
-// exists.
-//    So I use the hasValid...Excluding methods to exclude those properties, and then write explicit tests of those getters/setters.
-// 5) AbstractBeanEqualsMatcher.isValidBeanEquals doesn't test whether two instances are equal unless there are properties, and IndeterminateLoanFlag doesn't have any properties
-// so it's equals method is not fully covered.
-
 /**
  * Unit tests for beans which aren't sub-classes of {@link SchemeValuePair}.
  */
@@ -1286,8 +1274,8 @@ public class TestNonSVPBeans extends BaseTestNonSVPBeans {
         final Problem problem2 = new Problem(new ProblemType(PROBLEM_TYPE_SCHEME_STRING, PROBLEM_TYPE_VALUE_STRING), PROBLEM_ELEMENT_STRING, PROBLEM_VALUE_STRING,
             PROBLEM_DETAIL_STRING);
         final String problem2String = problem2.toString();
-        assertTrue("Problem.toString() for an instance with all properties set doesn't return same string for Problem populated via setters versus a Problem populated via the "
-            + "constructor that takes all properties.", problem1String.compareTo(problem2String) == 0);
+        assertEquals("Problem.toString() for an instance with all properties set doesn't return same string for Problem populated via setters versus a Problem populated via the "
+            + "constructor that takes all properties.", problem1String, problem2String);
 
         final Problem problem3 = new Problem();
         problem3.setProblemElement(PROBLEM_ELEMENT_STRING);
@@ -1302,9 +1290,9 @@ public class TestNonSVPBeans extends BaseTestNonSVPBeans {
 
         final Problem problem4 = new Problem(new ProblemType(PROBLEM_TYPE_SCHEME_STRING, PROBLEM_TYPE_VALUE_STRING), PROBLEM_ELEMENT_STRING, PROBLEM_VALUE_STRING);
         final String problem4String = problem4.toString();
-        assertTrue(
+        assertEquals(
             "Problem.toString() doesn't return same string for Problem populated via setters (omitting ProblemDetail) versus a Problem populated via the constructor that takes "
-                + "all properties (except ProblemDetail).", problem3String.compareTo(problem4String) == 0);
+                + "all properties (except ProblemDetail).", problem3String, problem4String);
 
         final Problem emptyProblem = new Problem();
         final String emptyProblemString = emptyProblem.toString();

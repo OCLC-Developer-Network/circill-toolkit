@@ -14,7 +14,7 @@ import org.oclc.circill.toolkit.service.base.ServiceException;
 import org.oclc.circill.toolkit.service.base.ValidationException;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * The Request service.
  */
 public interface RequestService extends ISO18626Service<RequestData, RequestConfirmationData> {
     @Override

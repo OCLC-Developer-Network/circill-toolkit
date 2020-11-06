@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * If there are any errors, an error message is included; refer to 4.10 of ISO 18626:2017.
  */
 public class ErrorData {
     protected ErrorType errorType;

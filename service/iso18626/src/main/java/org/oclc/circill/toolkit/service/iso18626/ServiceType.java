@@ -9,7 +9,10 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Type of service. Values: Copy, Loan or CopyOrLoan.
+ * If Copy is requested, then the requesting library is interested only in a copy.
+ * If Loan is requested, then the requesting library is interested only in a loan.
+ * If CopyOrLoan is requested, then the requesting library is willing to accept either a copy or a loan.
  */
 @SuppressWarnings("java:S115")
 public enum ServiceType { Copy, Loan, CopyOrLoan; }

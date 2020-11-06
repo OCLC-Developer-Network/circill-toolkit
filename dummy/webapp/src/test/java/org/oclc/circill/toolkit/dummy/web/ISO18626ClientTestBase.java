@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Base for tests of the ISO 18626 responder.
+ * Base for integration tests of the ISO 18626 messages.
  */
 public class ISO18626ClientTestBase {
 

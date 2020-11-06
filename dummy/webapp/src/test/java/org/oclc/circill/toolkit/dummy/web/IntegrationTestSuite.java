@@ -30,22 +30,21 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * Created by bodfishj on 10/18/17.
+ * Test suite for integration tests of the client/initiator & server/responder.
  */
 @RunWith(Suite.class)
 @SuiteClasses({ ISO18626RequestClientTest.class, NCIPLookupItemClientTest.class })
-public class ClientTestSuite {
+public class IntegrationTestSuite {
 
-    private static final Logger LOG = Logger.getLogger(ClientTestSuite.class);
+    private static final Logger LOG = Logger.getLogger(IntegrationTestSuite.class);
 
     static InstalledLocalContainer container;
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        LOG.debug("Entered DummyResponderTestSuite.beforeClass");
         try {
             LOG.info("***** Installing container.");
-            final Installer installer = new ZipURLInstaller(new URL("file:./tomcat-7.0.68.zip"));
+            final Installer installer = new ZipURLInstaller(new URL("file:./src/test/resources/tomcat-7.0.68.zip"));
             installer.install();
 
             final LocalConfiguration configuration = (LocalConfiguration) new DefaultConfigurationFactory()
@@ -53,8 +52,10 @@ public class ClientTestSuite {
             container = (InstalledLocalContainer) new DefaultContainerFactory().createContainer("tomcat7x", ContainerType.INSTALLED, configuration);
             container.setHome(installer.getHome());
 
-            // TODO: Need to be able to automatically select the current war.
-            final WAR myWar = new WAR("./target/dummy-webapp-1.0.0-SNAPSHOT.war");
+            final String projectVersion = System.getProperty("projectVersion");
+            final String warFilePath = "./target/dummy-webapp-" + projectVersion + ".war";
+            LOG.info("war file path = '" + warFilePath);
+            final WAR myWar = new WAR(warFilePath);
             myWar.setContext("/dummy");
             configuration.addDeployable(myWar);
 
@@ -73,7 +74,6 @@ public class ClientTestSuite {
 
     @AfterClass
     public static void afterClass() throws Exception {
-        LOG.debug("Entered DummyResponderTestSuite.afterClass");
         try {
             container.stop();
             LOG.info("***** Stopped container.");

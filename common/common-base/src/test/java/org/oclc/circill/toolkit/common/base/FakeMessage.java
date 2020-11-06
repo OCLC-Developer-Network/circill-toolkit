@@ -11,7 +11,7 @@ package org.oclc.circill.toolkit.common.base;
 import org.oclc.circill.toolkit.service.base.ServiceMessage;
 
 /**
- * Created by bodfishj on 11/14/17.
+ * Subclass of {@link ServiceMessage} for tests.
  */
 public class FakeMessage<ID extends FakeInitiationData, RD extends FakeResponseData> implements ServiceMessage<ID, RD> {
 }

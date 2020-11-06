@@ -15,14 +15,17 @@ import java.util.Locale;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 
 /**
- * Base for unit tests of CurrencyCode subclasses.
+ * Base for verification of CurrencyCode subclasses.
+ * This class compares the JVM's currency code list to a {@link CurrencyCode} subclass's list of values and reports any discrepancies.
+ * It is <em>not</em> a unit test, since the Toolkit's functionality does not rely on the two lists matching. Instead it serves to:
+ * 1) Alert Toolkit maintainers when the subclasses need updating (e.g. when a code is added to ISO 4217).
+ * 2) Document any disagreements between the CurrencyCode subclasses and the JVM (e.g. minor units).
  */
-public class BaseTestCurrencyCode {
+public class BaseVerifyCurrencyCodes {
 
-    private static final Logger LOG = Logger.getLogger(BaseTestCurrencyCode.class);
+    private static final Logger LOG = Logger.getLogger(BaseVerifyCurrencyCodes.class);
 
     private static final String JAVA_VERSION = System.getProperty("java.version");
     private static final String JAVA_VERSION_1_6 = "^1\\.6[^0-9].*";
@@ -63,20 +66,25 @@ public class BaseTestCurrencyCode {
             TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA = "^(MRU|STN|UYW|VES|BYN)$";
         } else {
             JAVA_CURRENCIES_NOT_IN_SERVICE_CLASS = "^$";
-            TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA = "^(UYW)$";
+            TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA = "^(MRU|STN|UYW|VES)$";
         }
     }
 
     /**
      * Test the {@link CurrencyCode#minorUnit} for all supported Currency Codes.
      * @param serviceCurrencyCodesClass a subclass of {@link CurrencyCode}
-     * @throws IllegalAccessException if one of the serviceCurrencyCodesClass' static fields isn't accessible
+     * @throws ToolkitInternalException if one of the serviceCurrencyCodesClass' static fields isn't accessible
      */
-    protected void validateServiceClassCodesAreInJava(final Class<? extends CurrencyCode> serviceCurrencyCodesClass) throws IllegalAccessException {
+    protected static void validateServiceClassCodesAreInJava(final Class<? extends CurrencyCode> serviceCurrencyCodesClass) throws ToolkitInternalException {
         final Field[] fields = serviceCurrencyCodesClass.getDeclaredFields();
         for (final Field f : fields) {
             if (f.getName().matches("^[A-Z]*$") && !f.getName().matches("^LOG$")) {
-                final CurrencyCode currencyCode = (CurrencyCode) f.get(null);
+                final CurrencyCode currencyCode;
+                try {
+                    currencyCode = (CurrencyCode) f.get(null);
+                } catch (IllegalAccessException e) {
+                    throw new ToolkitInternalException("Can't access field '" + f.getName() + "'.", e);
+                }
                 final String currencyCodeString = currencyCode.getValue();
                 if (!currencyCodeString.matches(TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA)) {
                     LOG.debug("Testing " + currencyCodeString);
@@ -85,34 +93,46 @@ public class BaseTestCurrencyCode {
                         final int javaCCFractionalDigits = javaCC.getDefaultFractionDigits();
                         if (currencyCodeString.compareTo("VND") == 0 && !JAVA_VERSION.matches(JAVA_VERSIONS_1_8_AND_UP)) {
                             // Java's Currency definition for VND prior to version 1.8 has a minor unit of 2, but as of 2011-09-09
-                            // the ISO 4217 spreadsheet (dl_iso_table_a1-1.xls) has 0, which is what NCIP's Version1CurrencyCode uses.
-                            Assert.assertEquals("VND currency's minor unit in Java's representation is wrong.", 2, javaCCFractionalDigits);
-                            Assert.assertEquals("VND currency's minor unit in " + serviceCurrencyCodesClass.getName() + " is wrong.", 0, currencyCode.getMinorUnit());
-//                        } else if (currencyCodeString.compareTo("UGX") == 0 && JAVA_VERSION.matches(JAVA_VERSIONS_1_8_AND_UP)) {
-//                            // Java's Currency definition for UGX in version 1.8 has a minor unit of 0, but as of 2011-09-09
-//                            // the ISO 4217 spreadsheet (dl_iso_table_a1-1.xls) has 2, which is what NCIP's Version1CurrencyCode uses.
-//                            Assert.assertEquals("UGX currency's minor unit in Java's representation is wrong.", 0, javaCCFractionalDigits);
-//                            Assert.assertEquals("UGX currency's minor unit in " + serviceCurrencyCodesClass.getName() + " is wrong.", 2, currencyCode.getMinorUnit());
-//
+                            // the ISO 4217 spreadsheet (dl_iso_table_a1-1.xls) has 0, which is what Toolkit uses.
+                            if (javaCCFractionalDigits != 2) {
+                                LOG.warn("VND currency's minor unit in Java's representation is wrong.");
+                            }
+                            if (currencyCode.getMinorUnit() != 0) {
+                                LOG.warn("VND currency's minor unit in " + serviceCurrencyCodesClass.getName() + " is wrong.");
+                            }
+                        } else if (currencyCodeString.compareTo("UGX") == 0 && JAVA_VERSION.matches(JAVA_VERSIONS_1_8_AND_UP)) {
+                            // Java's Currency definition for UGX in version 1.8 has a minor unit of 0, but as of 2011-09-09
+                            // the ISO 4217 spreadsheet (dl_iso_table_a1-1.xls) has 2, which is what the Toolkit uses.
+                            if (javaCCFractionalDigits != 0) {
+                                LOG.warn("UGX currency's minor unit in Java's representation is wrong.");
+                            }
+                            if (currencyCode.getMinorUnit() != 2) {
+                                LOG.warn("UGX currency's minor unit in " + serviceCurrencyCodesClass.getName() + " is wrong.");
+                            }
                         } else if (currencyCodeString.compareTo("CLF") == 0 && JAVA_VERSION.matches(JAVA_VERSIONS_1_8_THRU_1_8_065)) {
                             // Java's Currency definition for CLF in version 1.8 up thru 1.8.0_66 has a minor unit of 0, but
-                            // the ISO 4217 spreadsheet (dl_iso_table_a1-1.xls) has 4, which is what NCIP's Version1CurrencyCode uses.
-                            Assert.assertEquals("CLF currency's minor unit in Java's representation is wrong.", 0, javaCCFractionalDigits);
-                            Assert.assertEquals("CLF currency's minor unit in " + serviceCurrencyCodesClass.getName() + " is wrong.", 4, currencyCode.getMinorUnit());
+                            // the ISO 4217 spreadsheet (dl_iso_table_a1-1.xls) has 4, which is what the Toolkit uses.
+                            if (javaCCFractionalDigits != 0) {
+                                LOG.warn("CLF currency's minor unit in Java's representation is wrong.");
+                            }
+                            if (currencyCode.getMinorUnit() != 4) {
+                                LOG.warn("CLF currency's minor unit in " + serviceCurrencyCodesClass.getName() + " is wrong.");
+                            }
                         } else {
-                            Assert.assertEquals(currencyCodeString + "'s minor units do not match between Java and " + serviceCurrencyCodesClass.getName(), javaCCFractionalDigits,
-                                currencyCode.getMinorUnit());
+                            if (javaCCFractionalDigits != currencyCode.getMinorUnit()) {
+                                LOG.warn(currencyCodeString + "'s minor units do not match between Java and " + serviceCurrencyCodesClass.getName());
+                            }
                         }
                     } catch (IllegalArgumentException e) {
-                        Assert.fail("Java's currency code tables do not have currency code '" + currencyCodeString + "'.");
+                        LOG.error("Java's currency code tables do not have currency code '" + currencyCodeString + "'.");
                     }
                 } else {
                     try {
                         Currency.getInstance(currencyCodeString);
-                        Assert.fail("Java's currency code tables DO have currency code '" + currencyCodeString
-                            + "'; the TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA variable needs to be updated .");
+                        LOG.error("Java's currency code tables DO have currency code '" + currencyCodeString
+                            + "'; the TOOLKIT_CURRENCIES_NOT_KNOWN_TO_JAVA variable needs to be updated to expect this code in this version of Java.");
                     } catch (IllegalArgumentException e) {
-                        LOG.debug("Confirmed that currency code '" + currencyCodeString + "' from the NCIP list isn't in Java's list.");
+                        LOG.debug("Confirmed that currency code '" + currencyCodeString + "' from the Toolkit list isn't in Java's list.");
                     }
                 }
             }
@@ -125,7 +145,7 @@ public class BaseTestCurrencyCode {
      * @param serviceCurrencyCodeClass a subclass of {@link CurrencyCode}
      * @throws ToolkitInternalException if there is an unexpected condition (other than a mismatch in the currency codes
      */
-    protected void validateJavaCodesAreInServiceClass(final Class<? extends CurrencyCode> serviceCurrencyCodeClass, final String schemeURI) throws ToolkitInternalException {
+    protected static void validateJavaCodesAreInServiceClass(final Class<? extends CurrencyCode> serviceCurrencyCodeClass, final String schemeURI) throws ToolkitInternalException {
 
         for (final Currency javaCurrency : JAVA_CURRENCY_CODE_SET) {
             final String javaCC = javaCurrency.getCurrencyCode();
@@ -133,15 +153,15 @@ public class BaseTestCurrencyCode {
                 try {
                     SchemeValuePairHelper.findSchemeValuePair(serviceCurrencyCodeClass, schemeURI, javaCurrency.getCurrencyCode());
                 } catch (ConfigurationException e) {
-                    Assert.fail("Java's currency code " + javaCurrency.getCurrencyCode() + " is not in " + serviceCurrencyCodeClass.getName());
+                    LOG.error("Java's currency code " + javaCurrency.getCurrencyCode() + " is not in " + serviceCurrencyCodeClass.getName());
                 }
             } else {
                 try {
                     SchemeValuePairHelper.findSchemeValuePair(serviceCurrencyCodeClass, schemeURI, javaCurrency.getCurrencyCode());
-                    Assert.fail("Java's currency code " + javaCurrency.getCurrencyCode()
-                        + " IS in the Version 1 NCIP code list; the JAVA_CURRENCIES_NOT_IN_NCIP_VERSION1_SCHEME variable needs to be updated.");
+                    LOG.error("Java's currency code " + javaCurrency.getCurrencyCode()
+                        + " IS in the Toolkit's list; the JAVA_CURRENCIES_NOT_IN_SERVICE_CLASS variable needs to be updated.");
                 } catch (ConfigurationException e) {
-                    LOG.debug("Confirmed that currency code '" + javaCurrency.getCurrencyCode() + "' from the Java list isn't in the NCIP list.");
+                    LOG.debug("Confirmed that currency code '" + javaCurrency.getCurrencyCode() + "' from the Java list isn't in the Toolkit's list.");
                 }
             }
         }

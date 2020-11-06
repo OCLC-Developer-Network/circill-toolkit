@@ -10,18 +10,19 @@ package org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.dozer;
 
 import org.oclc.circill.toolkit.binding.ilsdiv1_0_bc.jaxb.elements.Problem;
 import org.oclc.circill.toolkit.binding.jaxb.dozer.BaseProblemResponseConverter;
+import org.oclc.circill.toolkit.service.ncip.ProblemResponseData;
 
 import java.util.ArrayList;
 
 /**
- * Created by bodfishj on 9/3/14.
+ * Convert {@link ProblemResponseData} objects.
  */
+@SuppressWarnings("java:S3740")
 public class ILSDIv1_0_bc_ProblemResponseConverter extends BaseProblemResponseConverter {
-
+    /**
+     * Construct an instance.
+     */
     public ILSDIv1_0_bc_ProblemResponseConverter() {
-
         super(ArrayList.class, Problem.class);
-
     }
-
 }

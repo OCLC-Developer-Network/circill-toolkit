@@ -13,7 +13,7 @@ import org.oclc.circill.toolkit.service.base.SchemeValuePair;
 import org.oclc.circill.toolkit.service.base.ToolkitInternalException;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * The service via which the requested item was sent.
  */
 public class SentViaType extends SchemeValuePair {
 

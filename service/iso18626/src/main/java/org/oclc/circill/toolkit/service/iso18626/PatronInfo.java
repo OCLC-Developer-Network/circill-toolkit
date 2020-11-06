@@ -16,7 +16,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * Details of the patron for whom the request is being made.
+ * Only used according to 5.2.4 of ISO 18626:2017.
  */
 public class PatronInfo {
 

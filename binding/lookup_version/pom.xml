@@ -100,6 +100,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-1.2-api</artifactId>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>stax</groupId>
             <artifactId>stax-api</artifactId>
             <scope>test</scope>
@@ -200,6 +210,7 @@
                         </goals>
                         <configuration>
                             <failOnWarning>true</failOnWarning>
+                            <ignoreNonCompile>true</ignoreNonCompile>
                             <usedDependencies>
                                 <ignoredUnusedDeclaredDependencies>javax.servlet:servlet-api</ignoredUnusedDeclaredDependencies>
                                 <ignoredUnusedDeclaredDependencies>org.codehaus.castor:castor-xml-diff</ignoredUnusedDeclaredDependencies>
@@ -207,7 +218,6 @@
                                 <ignoredUnusedDeclaredDependencies>org.hamcrest:hamcrest-library</ignoredUnusedDeclaredDependencies>
                                 <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:common-ncip</ignoredUnusedDeclaredDependencies>
                                 <ignoredUnusedDeclaredDependencies>org.oclc.circill.toolkit:common-ncipversion</ignoredUnusedDeclaredDependencies>
-                                <ignoredUnusedDeclaredDependencies>org.slf4j:slf4j-log4j12</ignoredUnusedDeclaredDependencies>
                             </usedDependencies>
                         </configuration>
                     </execution>

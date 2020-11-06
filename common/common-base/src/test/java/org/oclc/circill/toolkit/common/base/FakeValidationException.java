@@ -11,7 +11,7 @@ package org.oclc.circill.toolkit.common.base;
 import org.oclc.circill.toolkit.service.base.ValidationException;
 
 /**
- * Created by bodfishj on 11/14/17.
+ * Subclass of {@link ValidationException} for tests.
  */
 public class FakeValidationException extends ValidationException {
     /**

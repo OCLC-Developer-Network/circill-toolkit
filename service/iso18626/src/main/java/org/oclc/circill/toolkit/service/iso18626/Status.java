@@ -9,7 +9,7 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Actual status of the request in the supplying library.
  */
 @SuppressWarnings("java:S115")
 public enum Status {RequestReceived, ExpectToSupply, WillSupply, Loaned, Overdue, Recalled, RetryPossible, Unfilled, CopyCompleted, LoanCompleted, CompletedWithoutReturn,

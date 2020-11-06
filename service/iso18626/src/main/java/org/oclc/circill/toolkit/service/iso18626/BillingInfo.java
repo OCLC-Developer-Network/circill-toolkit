@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * Information about how the requesting agency expects to be billed for and pay for the item.
  */
 public class BillingInfo {
 

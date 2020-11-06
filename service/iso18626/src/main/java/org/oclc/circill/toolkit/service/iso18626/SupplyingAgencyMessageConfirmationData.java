@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Confirmation message for the Supplying Agency Message.
  */
 public class SupplyingAgencyMessageConfirmationData implements ISO18626ConfirmationData {
     /**

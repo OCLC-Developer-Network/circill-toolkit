@@ -9,7 +9,7 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * A code defining the reason for the message.
  */
 @SuppressWarnings("java:S115")
 public enum ReasonForMessage { RequestResponse, StatusRequestResponse, RenewResponse, CancelResponse, StatusChange, Notification; }

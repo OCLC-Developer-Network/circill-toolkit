@@ -8,24 +8,16 @@
 
 package org.oclc.circill.toolkit.service.ncip;
 
-import org.oclc.circill.toolkit.service.base.BaseTestCurrencyCode;
+import org.oclc.circill.toolkit.service.base.BaseVerifyCurrencyCodes;
 import org.oclc.circill.toolkit.service.base.ToolkitInternalException;
 
-import org.junit.Test;
-
 /**
- * Unit Test for Version1CurrencyCode.
+ * Verify {@link Version1CurrencyCode}.
+ * {@inheritDoc}
  */
-public class TestVersion1CurrencyCode extends BaseTestCurrencyCode {
-
-    @Test
-    public void test_ServiceClassCodesAreInJava() throws IllegalAccessException {
+public class VerifyVersion1CurrencyCodes extends BaseVerifyCurrencyCodes {
+    public static void main(final String[] args) throws ToolkitInternalException {
         validateServiceClassCodesAreInJava(Version1CurrencyCode.class);
-    }
-
-    @Test
-    public void test_JavaCodesAreInServiceClass() throws ToolkitInternalException {
         validateJavaCodesAreInServiceClass(Version1CurrencyCode.class, Version1CurrencyCode.VERSION_1_CURRENCY_CODE);
     }
-
 }

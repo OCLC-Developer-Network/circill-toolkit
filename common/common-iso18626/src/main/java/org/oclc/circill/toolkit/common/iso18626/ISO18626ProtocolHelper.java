@@ -31,7 +31,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * {@link ProtocolHelper} for ISO 18626.
  */
 public class ISO18626ProtocolHelper implements ProtocolHelper<ISO18626Message<ISO18626RequestData, ISO18626ConfirmationData>, ISO18626RequestData, ISO18626ConfirmationData> {
 

@@ -9,7 +9,7 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Sub type to qualify the request.
  */
 @SuppressWarnings("java:S115")
 public enum RequestSubType {BookingRequest, MultipleItemRequest, PatronRequest, TransferRequest, SupplyingLibrarysChoice}

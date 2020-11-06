@@ -9,7 +9,7 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * An action taken on an ILL request.
  */
 @SuppressWarnings("java:S115")
 public enum Action { StatusRequest, Received, Cancel, Renew, ShippedReturn, ShippedForward, Notification; }

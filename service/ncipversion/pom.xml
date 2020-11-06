@@ -51,8 +51,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -80,7 +80,7 @@
                         <configuration>
                             <failOnWarning>true</failOnWarning>
                             <usedDependencies>
-                                <ignoredUnusedDeclaredDependencies>log4j:log4j</ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependencies>org.apache.logging.log4j:log4j-1.2-api</ignoredUnusedDeclaredDependencies>
                             </usedDependencies>
                         </configuration>
                     </execution>

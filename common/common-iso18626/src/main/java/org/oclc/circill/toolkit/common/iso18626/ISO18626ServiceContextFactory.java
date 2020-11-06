@@ -20,7 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- * Created by bodfishj on 2/21/18.
+ * {@link ServiceContextFactory} for ISO 18626.
  */
 public class ISO18626ServiceContextFactory
     implements ServiceContextFactory<ISO18626Message<ISO18626RequestData, ISO18626ConfirmationData>, ISO18626RequestData, ISO18626ConfirmationData>, ApplicationContextAware {

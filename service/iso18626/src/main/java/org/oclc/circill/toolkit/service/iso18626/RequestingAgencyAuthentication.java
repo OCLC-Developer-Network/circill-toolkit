@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * Authentication in supplying library system of the requesting library.
  */
 public class RequestingAgencyAuthentication {
     protected String accountId;

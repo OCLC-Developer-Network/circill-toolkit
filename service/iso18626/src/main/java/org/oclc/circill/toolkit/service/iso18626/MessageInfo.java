@@ -15,7 +15,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Message from the supplying library to the requesting agency.
  */
 public class MessageInfo {
 

@@ -9,6 +9,7 @@
 package org.oclc.circill.toolkit.service.iso18626;
 
 /**
- * Created by bodfishj on 2/13/18.
+ * Values Y or N – for Yes or No to respond.
+ * Mandatory when ReasonForMessage is RenewResponse or CancelResponse.
  */
 public enum YesNoType { Y, N; }

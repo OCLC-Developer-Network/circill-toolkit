@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Base for tests of the NCIP responder.
+ * Base for integration tests of the NCIP services.
  */
 public class NCIPClientTestBase {
 

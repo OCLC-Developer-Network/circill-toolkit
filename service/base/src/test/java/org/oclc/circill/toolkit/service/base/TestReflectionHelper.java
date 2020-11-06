@@ -8,7 +8,10 @@
 
 package org.oclc.circill.toolkit.service.base;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -79,7 +82,30 @@ public class TestReflectionHelper {
 
     @Test
     public void testIsValidUtilityClass() throws ReflectiveOperationException {
-        TestHelper.assertUtilityClassWellDefined(ReflectionHelper.class);
+        assertUtilityClassWellDefined(ReflectionHelper.class);
+    }
+
+    /**
+     * Verifies that a utility class is well defined.
+     * From http://stackoverflow.com/questions/4520216/how-to-add-test-coverage-to-a-private-constructor.
+     * Github source: https://github.com/trajano/maven-jee6/tree/master/maven-jee6-test
+     *
+     * @param clazz utility class to verify.
+     * @throws ReflectiveOperationException problem accessing the class or its elements using reflection.
+     */
+    public static void assertUtilityClassWellDefined(final Class<?> clazz) throws ReflectiveOperationException {
+        assertTrue(clazz.getName() + " is not final.", Modifier.isFinal(clazz.getModifiers()));
+        assertEquals(clazz.getName() + " does not have one and only one constructor.", 1, clazz.getDeclaredConstructors().length);
+        final Constructor<?> constructor = clazz.getDeclaredConstructor();
+        assertFalse(clazz.getName() + " constructor should not be accessible.", constructor.isAccessible());
+        assertTrue(clazz.getName() + " constructor should be private.", Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        constructor.newInstance();
+        constructor.setAccessible(false);
+        for (final Method method : clazz.getMethods()) {
+            assertTrue(clazz.getName() + "." + method.getName() + "(" + ReflectionHelper.formatClassNames(method.getParameterTypes()) + ") should be static.",
+                Modifier.isStatic(method.getModifiers()) || !method.getDeclaringClass().equals(clazz));
+        }
     }
 
     @Test
@@ -380,7 +406,7 @@ public class TestReflectionHelper {
     public void testFindClassesInPackage_NonEmptyResult() throws ToolkitInternalException {
 
         final List<Class<Object>> classes = ReflectionHelper.findClassesInPackage(this.getClass().getPackage().getName(), ".*\\." + this.getClass().getSimpleName() + "$");
-        assertTrue(classes.size() == 1);
+        assertEquals(1, classes.size());
         assertTrue((classes.get(0).equals(TestReflectionHelper.class)));
 
     }

@@ -9,12 +9,13 @@
 package org.oclc.circill.toolkit.dummy;
 
 import org.oclc.circill.toolkit.common.ncip.NCIPProtocolHelper;
+import org.oclc.circill.toolkit.service.base.Service;
 import org.oclc.circill.toolkit.service.ncip.NCIPInitiationData;
 import org.oclc.circill.toolkit.service.ncip.NCIPResponseData;
 import org.oclc.circill.toolkit.service.ncip.NCIPService;
 
 /**
- * Created by bodfishj on 2/21/18.
+ * A dummy {@link Service} for NCIP messages.
  * @param <ID> the {@link NCIPInitiationData} type
  * @param <RD> the {@link NCIPResponseData} type
  */

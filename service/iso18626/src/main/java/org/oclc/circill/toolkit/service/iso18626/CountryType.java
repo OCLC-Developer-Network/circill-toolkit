@@ -13,7 +13,7 @@ import org.oclc.circill.toolkit.service.base.SchemeValuePair;
 import org.oclc.circill.toolkit.service.base.ToolkitInternalException;
 
 /**
- * Created by bodfishj on 2/7/18.
+ * Country symbol as specified in ISO 3166-1.
  */
 public class CountryType extends SchemeValuePair {
 

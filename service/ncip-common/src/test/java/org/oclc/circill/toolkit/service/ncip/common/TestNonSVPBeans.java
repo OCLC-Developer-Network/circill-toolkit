@@ -19,7 +19,7 @@ import static org.hamcrest.core.AllOf.allOf;
 import org.junit.Test;
 
 /**
- * Created by bodfishj on 3/15/18.
+ * Unit tests of bean classes in this package.
  */
 public class TestNonSVPBeans {
     @Test
