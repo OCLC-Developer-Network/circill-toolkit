@@ -12,7 +12,7 @@
                 <ns1:agencyIdValue>oclc-ISODP</ns1:agencyIdValue>
             </ns1:requestingAgencyId>
             <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
-            <ns1:timestamp>2020-10-14T15:29:30.403Z</ns1:timestamp>
+            <ns1:timestamp>2020-10-14T15:29:30Z</ns1:timestamp>
             <ns1:requestingAgencyRequestId>tester-20201014.1529</ns1:requestingAgencyRequestId>
         </ns1:header>
         <ns1:bibliographicInfo>
@@ -30,7 +30,7 @@
             <ns1:requestType>New</ns1:requestType>
             <ns1:serviceType>Loan</ns1:serviceType>
             <ns1:serviceLevel ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/ServiceLevelList-V1.0">Normal</ns1:serviceLevel>
-            <ns1:needBeforeDate>2020-11-14T16:29:30.403Z</ns1:needBeforeDate>
+            <ns1:needBeforeDate>2020-11-14T16:29:30Z</ns1:needBeforeDate>
         </ns1:serviceInfo>
         <ns1:requestedDeliveryInfo>
             <ns1:address>

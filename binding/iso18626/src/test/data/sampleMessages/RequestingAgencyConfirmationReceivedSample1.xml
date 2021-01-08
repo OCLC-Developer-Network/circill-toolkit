@@ -11,7 +11,7 @@
                 <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
                 <ns1:agencyIdValue>OCLC-NDOSU</ns1:agencyIdValue>
             </ns1:requestingAgencyId>
-            <ns1:timestamp>2020-03-03T22:49:55.541Z</ns1:timestamp>
+            <ns1:timestamp>2020-03-03T22:49:55Z</ns1:timestamp>
             <ns1:timestampReceived>2020-03-03T11:00:00Z</ns1:timestampReceived>
             <ns1:messageStatus>OK</ns1:messageStatus>
         </ns1:confirmationHeader>

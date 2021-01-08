@@ -2,8 +2,8 @@
     <globalBindings generateIsSetMethod="false">
         <javaType name="java.math.BigDecimal" xmlType="xsd:integer"/>
         <javaType name="javax.xml.datatype.XMLGregorianCalendar" xmlType="xsd:dateTime"
-                  parseMethod="org.oclc.circill.toolkit.binding.jaxb.DatatypeConverter.parseDateTime"
-                  printMethod="org.oclc.circill.toolkit.binding.jaxb.DatatypeConverter.printDateTime"/>
+                  parseMethod="org.oclc.circill.toolkit.binding.jaxb.DatatypeConverter.parseDateTimeStrippingMillis"
+                  printMethod="org.oclc.circill.toolkit.binding.jaxb.DatatypeConverter.printDateTimeWithoutMillis"/>
     </globalBindings>
     <bindings schemaLocation="ISO-18626-v1_2.xsd">
         <schemaBindings>
