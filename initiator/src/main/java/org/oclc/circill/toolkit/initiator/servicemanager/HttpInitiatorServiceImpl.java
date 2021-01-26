@@ -21,6 +21,8 @@ import org.oclc.circill.toolkit.service.base.ServiceResponseData;
 import org.oclc.circill.toolkit.service.base.ToolkitInternalException;
 import org.oclc.circill.toolkit.service.base.ValidationException;
 
+import static java.util.Collections.emptyMap;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -72,6 +74,7 @@ public class HttpInitiatorServiceImpl<SM extends ServiceMessage<ID, RD>, ID exte
 
         LOG.debug("Entered performService for " + initiationData);
         final HttpInitiatorServiceManager svcMgr = (HttpInitiatorServiceManager) serviceManager;
+        Map<String, String> headers = emptyMap();
         try {
             final InputStream inputStream = translator.createInitiationMessageStream(serviceContext, initiationData);
             final int bytesAvailable = inputStream.available();
@@ -80,11 +83,16 @@ public class HttpInitiatorServiceImpl<SM extends ServiceMessage<ID, RD>, ID exte
             if (bytesRead < bytesAvailable) {
                 throw new ServiceException("Read fewer bytes (" + bytesRead + ") from the inputStream than were available (" + bytesAvailable + ").");
             }
-            final InputStream responseMsgInputStream = svcMgr.sendMessage(initiationBytes, generateHeaders(initiationData));
+            headers = generateHeaders(initiationData);
+            final InputStream responseMsgInputStream = svcMgr.sendMessage(initiationBytes, headers);
             final RD responseData = translator.createResponseData(serviceContext, responseMsgInputStream);
             return responseData;
         } catch (IOException | ConfigurationException | ToolkitInternalException e) {
+            logException(e, headers);
             throw new ServiceException("IOException reading bytes from the initiation message's InputStream.", e);
+        } catch (final Exception e) {
+            logException(e, headers);
+            throw e;
         }
     }
 
@@ -102,6 +110,23 @@ public class HttpInitiatorServiceImpl<SM extends ServiceMessage<ID, RD>, ID exte
             headers.putAll(headerGenerator.generateHeaders(initiationData));
         }
         return headers;
+    }
+
+    /**
+     * Logs the exception and HTTP headers.
+     * @param exception exception that occurred.
+     * @param headers HTTP headers to log.
+     */
+    private static void logException(final Exception exception, final Map<String, String> headers) {
+        final StringBuilder sb = new StringBuilder();
+        final String msg = String.format("Exception occurred.%n  Exception:[%s]%n  HTTP Headers:", exception.toString());
+        sb.append(msg);
+        for (final Map.Entry<String, String> header : headers.entrySet()) {
+            final String line = String.format("%n    name:[%s], value:[%s]", header.getKey(), header.getValue());
+            sb.append(line);
+        }
+
+        LOG.info(sb.toString());
     }
 
     public void setHeaderGenerators(final List<HeaderGenerator<ID>> headerGenerators) {
