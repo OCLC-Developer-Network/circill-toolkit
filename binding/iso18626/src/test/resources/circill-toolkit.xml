@@ -57,7 +57,7 @@
         </property>
         <property name="arguments">
             <list>
-                <value>org.oclc.circill.toolkit.service.ncip.Version1CurrencyCode</value>
+                <value>org.oclc.circill.toolkit.service.iso18626.Version2017CurrencyCode</value>
             </list>
         </property>
     </bean>
