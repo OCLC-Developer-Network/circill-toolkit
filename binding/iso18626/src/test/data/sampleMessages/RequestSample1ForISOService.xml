@@ -4,12 +4,12 @@
     <ns1:request>
         <ns1:header>
             <ns1:supplyingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
-                <ns1:agencyIdValue>OCLC-NDOSU</ns1:agencyIdValue>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-ABCDE</ns1:agencyIdValue>
             </ns1:supplyingAgencyId>
             <ns1:requestingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
-                <ns1:agencyIdValue>OCLC-NDOSU</ns1:agencyIdValue>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-ABCDE</ns1:agencyIdValue>
             </ns1:requestingAgencyId>
             <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
             <ns1:timestamp>2018-02-08T08:34:54Z</ns1:timestamp>
@@ -23,7 +23,7 @@
             <ns1:requestType>New</ns1:requestType>
             <ns1:requestSubType>TransferRequest</ns1:requestSubType>
             <ns1:serviceType>Loan</ns1:serviceType>
-            <ns1:serviceLevel ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/ServiceLevelList-V1.0">Normal</ns1:serviceLevel>
+            <ns1:serviceLevel ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/ServiceLevelList-V1.0">Normal</ns1:serviceLevel>
         </ns1:serviceInfo>
     </ns1:request>
 </ns1:ISO18626Message>

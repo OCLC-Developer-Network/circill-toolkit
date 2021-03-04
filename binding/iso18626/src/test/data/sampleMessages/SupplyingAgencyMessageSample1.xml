@@ -4,11 +4,11 @@
     <ns1:supplyingAgencyMessage>
         <ns1:header>
             <ns1:supplyingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
                 <ns1:agencyIdValue>US-ocolcwe</ns1:agencyIdValue>
             </ns1:supplyingAgencyId>
             <ns1:requestingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
                 <ns1:agencyIdValue>US-ocolcm</ns1:agencyIdValue>
             </ns1:requestingAgencyId>
             <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
@@ -24,10 +24,10 @@
             <ns1:reasonForMessage>RenewResponse</ns1:reasonForMessage>
             <ns1:answerYesNo>Y</ns1:answerYesNo>
             <ns1:note>MessageInfo/Note</ns1:note>
-            <ns1:reasonUnfilled ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/ReasonUnfilledList-V1.0">NotOnShelf</ns1:reasonUnfilled>
-            <ns1:reasonRetry ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/ReasonRetryList-V1.0">AtBindery</ns1:reasonRetry>
+            <ns1:reasonUnfilled ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/ReasonUnfilledList-V1.0">NotOnShelf</ns1:reasonUnfilled>
+            <ns1:reasonRetry ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/ReasonRetryList-V1.0">AtBindery</ns1:reasonRetry>
             <ns1:offeredCosts>
-                <ns1:currencyCode ns1:scheme="http://www.bsi-global.com/Technical+Information/Publications/_Publications/tig90x.doc">USD</ns1:currencyCode>
+                <ns1:currencyCode ns1:scheme="https://www.iso.org/iso-4217-currency-codes.html">USD</ns1:currencyCode>
                 <ns1:monetaryValue>99.99</ns1:monetaryValue>
             </ns1:offeredCosts>
             <ns1:retryAfter>2018-03-09T12:00:00Z</ns1:retryAfter>
@@ -42,18 +42,18 @@
         <ns1:deliveryInfo>
             <ns1:dateSent>2018-02-28T14:28:25Z</ns1:dateSent>
             <ns1:itemId>Item-0001</ns1:itemId>
-            <ns1:sentVia ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/SentViaList-V1.0">Mail</ns1:sentVia>
+            <ns1:sentVia ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/SentViaList-V1.0">Mail</ns1:sentVia>
             <ns1:sentToPatron>true</ns1:sentToPatron>
-            <ns1:loanCondition ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/LoanConditionList-V1.0">NoReproduction</ns1:loanCondition>
-            <ns1:deliveredFormat ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/DeliveredFormatList-V1.0">LargePrint</ns1:deliveredFormat>
+            <ns1:loanCondition ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/LoanConditionList-V1.0">NoReproduction</ns1:loanCondition>
+            <ns1:deliveredFormat ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/DeliveredFormatList-V1.0">LargePrint</ns1:deliveredFormat>
             <ns1:deliveryCosts>
-                <ns1:currencyCode ns1:scheme="http://www.bsi-global.com/Technical+Information/Publications/_Publications/tig90x.doc">USD</ns1:currencyCode>
+                <ns1:currencyCode ns1:scheme="https://www.iso.org/iso-4217-currency-codes.html">USD</ns1:currencyCode>
                 <ns1:monetaryValue>99.99</ns1:monetaryValue>
             </ns1:deliveryCosts>
         </ns1:deliveryInfo>
         <ns1:returnInfo>
             <ns1:returnAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
                 <ns1:agencyIdValue>US-ocolcm</ns1:agencyIdValue>
             </ns1:returnAgencyId>
             <ns1:name>Agency Name</ns1:name>
@@ -62,8 +62,8 @@
                 <ns1:line2>Line 2</ns1:line2>
                 <ns1:locality>City of Townsville</ns1:locality>
                 <ns1:postalCode>86753</ns1:postalCode>
-                <ns1:region ns1:scheme="http://example.com/iso3166-2">OH</ns1:region>
-                <ns1:country ns1:scheme="http://example.com/iso3166-1">US</ns1:country>
+                <ns1:region ns1:scheme="https://www.iso.org/iso-3166-country-codes.html#2012_iso3166-2">US-OH</ns1:region>
+                <ns1:country ns1:scheme="https://www.iso.org/iso-3166-country-codes.html">US</ns1:country>
             </ns1:physicalAddress>
         </ns1:returnInfo>
     </ns1:supplyingAgencyMessage>

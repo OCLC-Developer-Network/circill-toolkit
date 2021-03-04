@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:ISO18626Message ns1:version="v1_2_2017" xmlns:ns1="http://illtransactions.org/2013/iso18626">
+    <ns1:supplyingAgencyMessage>
+        <ns1:header>
+            <ns1:supplyingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-BCDEF</ns1:agencyIdValue>
+            </ns1:supplyingAgencyId>
+            <ns1:requestingAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-ABCDE</ns1:agencyIdValue>
+            </ns1:requestingAgencyId>
+            <ns1:multipleItemRequestId/>
+            <ns1:timestamp>2021-02-09T11:24:24Z</ns1:timestamp>
+            <ns1:requestingAgencyRequestId>Requesting-ID-2</ns1:requestingAgencyRequestId>
+            <ns1:supplyingAgencyRequestId>168134644</ns1:supplyingAgencyRequestId>
+        </ns1:header>
+        <ns1:messageInfo>
+            <ns1:reasonForMessage>RequestResponse</ns1:reasonForMessage>
+            <ns1:note>test request
+                Loan condition: OTHER (none)</ns1:note>
+        </ns1:messageInfo>
+        <ns1:statusInfo>
+            <ns1:status>Loaned</ns1:status>
+            <ns1:dueDate>2021-03-11T05:00:00Z</ns1:dueDate>
+            <ns1:lastChange>2021-02-09T11:24:18Z</ns1:lastChange>
+        </ns1:statusInfo>
+        <ns1:deliveryInfo>
+            <ns1:dateSent>2021-02-09T05:00:00Z</ns1:dateSent>
+            <ns1:sentToPatron>false</ns1:sentToPatron>
+        </ns1:deliveryInfo>
+        <ns1:returnInfo>
+            <ns1:returnAgencyId>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>OCLC-BCDEF</ns1:agencyIdValue>
+            </ns1:returnAgencyId>
+            <ns1:name>ILL Dept</ns1:name>
+            <ns1:physicalAddress>
+                <ns1:line1>535 Avenue Viger E</ns1:line1>
+                <ns1:line2>Office 123</ns1:line2>
+                <ns1:locality>Montréal</ns1:locality>
+                <ns1:postalCode>H2L 2P3</ns1:postalCode>
+                <ns1:region ns1:scheme="https://www.iso.org/iso-3166-country-codes.html#2012_iso3166-2">CA-QC</ns1:region>
+                <ns1:country ns1:scheme="https://www.iso.org/iso-3166-country-codes.html">CA</ns1:country>
+            </ns1:physicalAddress>
+        </ns1:returnInfo>
+    </ns1:supplyingAgencyMessage>
+</ns1:ISO18626Message>

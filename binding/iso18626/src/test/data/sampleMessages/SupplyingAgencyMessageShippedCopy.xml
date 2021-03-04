@@ -4,11 +4,11 @@
     <ns1:supplyingAgencyMessage>
         <ns1:header>
             <ns1:supplyingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
                 <ns1:agencyIdValue>US-ocolcwe</ns1:agencyIdValue>
             </ns1:supplyingAgencyId>
             <ns1:requestingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
                 <ns1:agencyIdValue>US-ocolcm</ns1:agencyIdValue>
             </ns1:requestingAgencyId>
             <ns1:multipleItemRequestId></ns1:multipleItemRequestId>

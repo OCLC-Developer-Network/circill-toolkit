@@ -4,12 +4,12 @@
     <ns1:request>
         <ns1:header>
             <ns1:supplyingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
-                <ns1:agencyIdValue>oclc-NDOSU</ns1:agencyIdValue>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>oclc-ABCDE</ns1:agencyIdValue>
             </ns1:supplyingAgencyId>
             <ns1:requestingAgencyId>
-                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
-                <ns1:agencyIdValue>oclc-ISODP</ns1:agencyIdValue>
+                <ns1:agencyIdType ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/AgencyIdTypeList-V1.0">ISIL</ns1:agencyIdType>
+                <ns1:agencyIdValue>oclc-BCDEF</ns1:agencyIdValue>
             </ns1:requestingAgencyId>
             <ns1:multipleItemRequestId></ns1:multipleItemRequestId>
             <ns1:timestamp>2020-10-14T15:29:30Z</ns1:timestamp>
@@ -29,15 +29,15 @@
         <ns1:serviceInfo>
             <ns1:requestType>New</ns1:requestType>
             <ns1:serviceType>Loan</ns1:serviceType>
-            <ns1:serviceLevel ns1:scheme="http://illtransactions.org/ISO 18626/OpenCodeList/ServiceLevelList-V1.0">Normal</ns1:serviceLevel>
+            <ns1:serviceLevel ns1:scheme="http://illtransactions.org/ISO18626/OpenCodeList/ServiceLevelList-V1.0">Normal</ns1:serviceLevel>
             <ns1:needBeforeDate>2020-11-14T16:29:30Z</ns1:needBeforeDate>
         </ns1:serviceInfo>
         <ns1:requestedDeliveryInfo>
             <ns1:address>
                 <ns1:physicalAddress>
                     <ns1:postalCode>43017</ns1:postalCode>
-                    <ns1:region>OH</ns1:region>
-                    <ns1:country>US</ns1:country>
+                    <ns1:region ns1:scheme="https://www.iso.org/iso-3166-country-codes.html#2012_iso3166-2">US-OH</ns1:region>
+                    <ns1:country ns1:scheme="https://www.iso.org/iso-3166-country-codes.html">US</ns1:country>
                 </ns1:physicalAddress>
             </ns1:address>
         </ns1:requestedDeliveryInfo>
@@ -49,8 +49,8 @@
                 <ns1:physicalAddress>
                     <ns1:line1>6565 Kilgour Place</ns1:line1>
                     <ns1:postalCode>43017</ns1:postalCode>
-                    <ns1:region>OH</ns1:region>
-                    <ns1:country>US</ns1:country>
+                    <ns1:region ns1:scheme="https://www.iso.org/iso-3166-country-codes.html#2012_iso3166-2">US-OH</ns1:region>
+                    <ns1:country ns1:scheme="https://www.iso.org/iso-3166-country-codes.html">US</ns1:country>
                 </ns1:physicalAddress>
             </ns1:address>
         </ns1:billingInfo>
